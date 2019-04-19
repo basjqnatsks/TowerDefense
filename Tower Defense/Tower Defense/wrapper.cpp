@@ -23,6 +23,7 @@ int wrapper::get_currency() {
 }
 int wrapper::get_numoftowers() {
 	return this->Numberoftowers;
+
 }
 
 

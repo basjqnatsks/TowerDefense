@@ -28,11 +28,6 @@ private:
 	int Currency;
 
 	//should we have a maximum number of towers???
-	int Numberoftowers();
-
-
-
-
-
+	int Numberoftowers;
 
 };

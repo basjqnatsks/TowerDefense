@@ -15,6 +15,6 @@ public:
 	void set_y_axis(double var);
 private:
 	double x;
-	double y
+	double y;
 
 };
