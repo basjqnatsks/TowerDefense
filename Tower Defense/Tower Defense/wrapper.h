@@ -11,6 +11,9 @@ public:
 	~wrapper();
 
 
+	void run_app();
+
+
 	//getters
 	int get_currency();
 	int get_numoftowers();

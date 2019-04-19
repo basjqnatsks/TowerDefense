@@ -1,6 +1,17 @@
 #include "wrapper.h"
 
+wrapper::wrapper() {
+	//starting amount of money       1000?
+	this->Currency = 1000;
+}
+wrapper::~wrapper() {
 
+}
+
+
+void wrapper::run_app() {
+
+}
 
 //getters
 int wrapper::get_currency() {
