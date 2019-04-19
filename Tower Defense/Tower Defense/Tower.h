@@ -1,8 +1,10 @@
 #pragma once
-class Tower {
+#include "Entity.h"
+class Tower : public Entity {
 public:
 	Tower();
 	~Tower();
 
 
+private:
 };
