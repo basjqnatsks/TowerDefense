@@ -3,6 +3,10 @@
 wrapper::wrapper() {
 	//starting amount of money       1000?
 	this->Currency = 1000;
+
+
+
+
 }
 wrapper::~wrapper() {
 
