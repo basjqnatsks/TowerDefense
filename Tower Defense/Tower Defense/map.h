@@ -6,13 +6,15 @@ public:
 
 
 	//getters
-	double ** get_location_Backend();
+	double get_x();
+	double get_y();
 
 
 	//setters
-	void set_location_backend(double var[800][800]);
-
+	void set_x_axis(double var);
+	void set_y_axis(double var);
 private:
-	double Location_BackEnd[800][800];
+	double x;
+	double y
 
 };
