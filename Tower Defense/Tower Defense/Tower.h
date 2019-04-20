@@ -1,6 +1,6 @@
 #pragma once
 #include "Entity.h"
-class Tower : public Entity {
+class Tower {
 public:
 	Tower();
 	~Tower();
