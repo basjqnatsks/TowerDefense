@@ -155,6 +155,7 @@
     <ClCompile Include="map.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="Tower.cpp" />
+    <ClCompile Include="UI.cpp" />
     <ClCompile Include="wrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +164,7 @@
     <ClInclude Include="map.h" />
     <ClInclude Include="test.h" />
     <ClInclude Include="Tower.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
