@@ -1,6 +1,6 @@
 #include "wrapper.h"
 #include <SFML/Graphics.hpp>
-
+#include "UI.h"
 
 
 wrapper::wrapper() {
@@ -87,14 +87,71 @@ void wrapper::run_app() {
 				window.close();
 		}
 
-		window.clear();
-		
+
 		window.draw(background);
 		window.draw(rectangle);
 		window.draw(rectangle2);
 		window.draw(rectangl3);
 		window.draw(rectangl4);
 		window.draw(rectangl5);
+
+		bool click = false;
+		bool intersect = false;
+		UI *ui = new UI;
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+
+			click = false;
+
+			ui->resetSprite();
+
+			//check if on path or overlapping another tower
+			//use origin of sprite and size with for loop to check every pixel for intersection
+
+			//for(int i = 0; i < numtowers; i++){
+
+			//for(int x = ui->getTower1().getPosition().x; 
+			//	x < ui->getTower1().getPosition.x + (ui->getTower1().getTexture()->getSize().x * ui->getTower1().getScale().x);
+			//	x++){
+
+			//for(int y = ui->getTower1().getPosition().y; 
+			//	y < ui->getTower1().getPosition.y + (ui->getTower1().getTexture()->getSize().y * ui->getTower1().getScale().y);
+			//	y++){
+
+			//if( Tower[i]->getTowerX() == x && Tower[i]->getTowerY() == y){
+
+			//intersect = true;
+
+			//}
+
+			//}
+			//}
+			//}
+
+			//check if on path
+
+			//if(intersect == false){
+
+			//build tower
+
+			//}
+		}
+
+		//
+		if (click == true) {
+
+			ui->moveSprite(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window)));
+
+		}
+		else if (ui->getTower1().getGlobalBounds().contains(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window))) && sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+
+			click = true;
+
+
+
+
+		}
+
+		ui->open(window);
 		window.display();
 	}
 }
