@@ -1,23 +1,25 @@
 #pragma once
-class Entity {
+#include "SFML/Graphics.hpp"
+
+class Entity : public sf::RectangleShape {
 
 public:
 	Entity();
 	~Entity();
 
-
-
+	void setEntityTexture(std::string imageFile);
 
 	//getters
-	double get_x();
-	double get_y();
-
+	float get_x();
+	float get_y();
 
 	//setters
-	void set_x_axis(double var);
-	void set_y_axis(double var);
-private:
-	double x;
-	double y;
-};
+	void set_x_axis(float var);
+	void set_y_axis(float var);
 
+private:
+	float spawnX;
+	float spawnY;
+
+	std::string imageFile;
+};

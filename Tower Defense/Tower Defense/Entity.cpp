@@ -1,20 +1,26 @@
 #include "Entity.h"
 
 
+void Entity::setEntityTexture(std::string imageFile) {
+	sf::Texture texture;
+	texture.loadFromFile(imageFile);
+	const sf::Texture *pTexture = &texture;
+	this->setTexture(pTexture);
+}
 
 //getters
-double Entity::get_x() {
+float Entity::get_x() {
 	return this->x;
 }
-double Entity::get_y() {
+float Entity::get_y() {
 	return this->y;
 }
 
 
 //setters
-void Entity::set_x_axis(double var) {
+void Entity::set_x_axis(float var) {
 	this->x = var;
 }
-void Entity::set_y_axis(double var) {
+void Entity::set_y_axis(float var) {
 	this->y = var;
 }
