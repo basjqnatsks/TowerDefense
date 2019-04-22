@@ -6,12 +6,6 @@
 int main() {
 	wrapper app;
 	app.run_app();
-	sf::RenderWindow window(sf::VideoMode(1400, 800), "SFML works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
-
-
-
 
 
 	return 0;
