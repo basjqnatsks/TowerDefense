@@ -3,6 +3,13 @@
 
 UI::UI() {
 
+	click1 = false;
+	click2 = false;
+	click3 = false;
+	click4 = false;
+	intersect = false;
+	towerbuilt = false;
+
 	location = sf::Vector2f(100.f, 100.f);
 
 	UIplatform.setSize(sf::Vector2f(900.f, 150.f));
@@ -79,7 +86,7 @@ UI::UI() {
 	WaveNum.setPosition(630.f, 880.f);
 	WaveNum.setStyle(sf::Text::Bold);
 
-	points = 0;
+	points = 1000;
 
 	pointsPrint.setCharacterSize(20);
 	pointsPrint.setFont(font);
@@ -88,22 +95,22 @@ UI::UI() {
 
 	texture1.loadFromFile("Bobcat.jpg");
 	tower1.setTexture(texture1);
-	tower1.setPosition(100.f, 100.f);
+	tower1.setPosition(51.f, 832.f);
 	tower1.setScale(0.05f, 0.05f);
 
 	texture2.loadFromFile("Eevee.png");
 	tower2.setTexture(texture2);
-	tower2.setPosition(100.f, 100.f);
+	tower2.setPosition(206.f, 832.f);
 	tower2.setScale(0.2f, 0.2f);
 
 	texture3.loadFromFile("Metal Gear.png");
 	tower3.setTexture(texture3);
-	tower3.setPosition(100.f, 100.f);
+	tower3.setPosition(361.f, 832.f);
 	tower3.setScale(0.02f, 0.02f);
 
 	texture4.loadFromFile("Valkyr.png");
 	tower4.setTexture(texture4);
-	tower4.setPosition(100.f, 100.f);
+	tower4.setPosition(516.f, 832.f);
 	tower4.setScale(0.1f, 0.1f);
 
 }
@@ -299,6 +306,271 @@ void UI::resetSprite4() {
 	tower4.setPosition(516.f, 832.f);
 
 }
+
+void UI::buildtower1(sf::RectangleShape rectangleArray[5], sf::RenderWindow &window) {
+
+	//"drops" sprites, builds tower if not on path
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && click1 == true) {
+
+		click1 = false;
+
+		//check if on path or overlapping another tower
+		//use origin of sprite and size with for loop to check every pixel for intersection
+
+		for (int i = 0; i < 5; i++) {
+
+			if (intersect == false) {
+
+				for (float x = rectangleArray[i].getPosition().x;
+					x < rectangleArray[i].getPosition().x + rectangleArray[i].getSize().x;
+					x++) {
+
+					for (float y = rectangleArray[i].getPosition().y;
+						y < rectangleArray[i].getPosition().y + rectangleArray[i].getSize().y;
+						y++) {
+
+						if (tower1.getGlobalBounds().contains(x, y) && intersect == false) {
+
+							intersect = true;
+
+						}
+					}
+				}
+
+			}
+
+		}
+
+		//check if on ui platform**********************************************************
+
+		if (intersect == false && points >= 100) {
+
+			//build tower 1
+			towerbuilt = true;
+
+			points = points - 100;
+
+		}
+		else if (intersect == true) {
+
+			intersect = false;
+
+		}
+
+		resetSprite1();
+		
+	}
+
+}	
+
+void UI::buildtower2(sf::RectangleShape rectangleArray[5], sf::RenderWindow &window) {
+
+	//"drops" sprites, builds tower if not on path
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && click2 == true) {
+
+		click2 = false;
+
+		//check if on path or overlapping another tower
+		//use origin of sprite and size with for loop to check every pixel for intersection
+
+		for (int i = 0; i < 5; i++) {
+
+			if (intersect == false) {
+
+				for (float x = rectangleArray[i].getPosition().x;
+					x < rectangleArray[i].getPosition().x + rectangleArray[i].getSize().x;
+					x++) {
+
+					for (float y = rectangleArray[i].getPosition().y;
+						y < rectangleArray[i].getPosition().y + rectangleArray[i].getSize().y;
+						y++) {
+
+						if (tower2.getGlobalBounds().contains(x, y) && intersect == false) {
+
+							intersect = true;
+
+						}
+					}
+				}
+
+			}
+
+		}
+
+		if (intersect == false && points >= 120) {
+
+			//build tower 2
+			towerbuilt = true;
+			points = points - 120;
+
+
+		}
+		else if (intersect == true) {
+
+			intersect = false;
+
+		}
+
+		resetSprite2();
+
+	}
+
+}
+
+void UI::buildtower3(sf::RectangleShape rectangleArray[5], sf::RenderWindow &window) {
+
+	//"drops" sprites, builds tower if not on path
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && click3 == true) {
+
+		click3 = false;
+		
+		//check if on path or overlapping another tower
+		//use origin of sprite and size with for loop to check every pixel for intersection
+
+		for (int i = 0; i < 5; i++) {
+
+			if (intersect == false) {
+
+				for (float x = rectangleArray[i].getPosition().x;
+					x < rectangleArray[i].getPosition().x + rectangleArray[i].getSize().x;
+					x++) {
+
+					for (float y = rectangleArray[i].getPosition().y;
+						y < rectangleArray[i].getPosition().y + rectangleArray[i].getSize().y;
+						y++) {
+
+						if (tower3.getGlobalBounds().contains(x, y) && intersect == false) {
+
+							intersect = true;
+
+						}
+					}
+				}
+
+			}
+
+		}
+
+		if (intersect == false && points >= 300) {
+
+			//build tower 3
+			towerbuilt = true;
+			points = points - 300;
+
+
+		}
+		else if (intersect == true) {
+
+			intersect = false;
+
+		}
+
+		resetSprite3();
+
+	}
+
+}
+
+void UI::buildtower4(sf::RectangleShape rectangleArray[5], sf::RenderWindow &window) {
+
+	//"drops" sprites, builds tower if not on path
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && click4 == true) {
+
+		click4 = false;
+
+		//check if on path or overlapping another tower
+		//use origin of sprite and size with for loop to check every pixel for intersection
+
+		for (int i = 0; i < 5; i++) {
+
+			if (intersect == false) {
+
+				for (float x = rectangleArray[i].getPosition().x;
+					x < rectangleArray[i].getPosition().x + rectangleArray[i].getSize().x;
+					x++) {
+
+					for (float y = rectangleArray[i].getPosition().y;
+						y < rectangleArray[i].getPosition().y + rectangleArray[i].getSize().y;
+						y++) {
+
+						if (tower4.getGlobalBounds().contains(x, y) && intersect == false) {
+
+							intersect = true;
+
+						}
+					}
+				}
+
+			}
+
+		}
+
+		if (intersect == false && points >= 200) {
+
+			//build tower 4
+			towerbuilt = true;
+			points = points - 200;
+
+		}
+		else if (intersect == true) {
+
+			intersect = false;
+
+		}
+
+		resetSprite4();
+
+	}
+
+}
+
+void UI::draganddrop(sf::RenderWindow &window) {
+
+	//enables drag and drop movement of sprites
+	if (click1 == true) {
+
+		moveSprite1(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window)));
+
+	}
+	else if (click2 == true) {
+
+		moveSprite2(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window)));
+
+	}
+	else if (click3 == true) {
+
+		moveSprite3(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window)));
+
+	}
+	else if (click4 == true) {
+
+		moveSprite4(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window)));
+
+	}
+	else if (getTower1().getGlobalBounds().contains(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window))) && sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+
+		click1 = true;
+
+	}
+	else if (getTower2().getGlobalBounds().contains(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window))) && sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+
+		click2 = true;
+
+	}
+	else if (getTower3().getGlobalBounds().contains(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window))) && sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+
+		click3 = true;
+
+	}
+	else if (getTower4().getGlobalBounds().contains(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window))) && sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+
+		click4 = true;
+
+	}
+
+}
+
+
 
 //will need later
 //sf::Vector2i mousePosition = sf::Mouse::getPosition(window);

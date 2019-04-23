@@ -21,11 +21,7 @@ void wrapper::run_app() {
 
 	sf::RenderWindow window(sf::VideoMode(1400, 950), "Tower Defense", sf::Style::Close);
 
-	bool click1 = false;
-	bool click2 = false;
-	bool click3 = false;
-	bool click4 = false;
-	bool intersect = false;
+
 
 
 	UI *ui = new UI;
@@ -63,31 +59,36 @@ void wrapper::run_app() {
 	rectangle2.setFillColor(sf::Color::Black);
 
 
-	sf::RectangleShape rectangl3;
-	rectangl3.setSize(sf::Vector2f(500, 50));
-	rectangl3.setOutlineColor(sf::Color::Black);
-	rectangl3.setOutlineThickness(0);
-	rectangl3.setPosition(250, 500);
-	rectangl3.setFillColor(sf::Color::Black);
+	sf::RectangleShape rectangle3;
+	rectangle3.setSize(sf::Vector2f(500, 50));
+	rectangle3.setOutlineColor(sf::Color::Black);
+	rectangle3.setOutlineThickness(0);
+	rectangle3.setPosition(250, 500);
+	rectangle3.setFillColor(sf::Color::Black);
 
 
 
-	sf::RectangleShape rectangl4;
-	rectangl4.setSize(sf::Vector2f(50, 250));
-	rectangl4.setOutlineColor(sf::Color::Black);
-	rectangl4.setOutlineThickness(0);
-	rectangl4.setPosition(700, 500);
-	rectangl4.setFillColor(sf::Color::Black);
+	sf::RectangleShape rectangle4;
+	rectangle4.setSize(sf::Vector2f(50, 250));
+	rectangle4.setOutlineColor(sf::Color::Black);
+	rectangle4.setOutlineThickness(0);
+	rectangle4.setPosition(700, 500);
+	rectangle4.setFillColor(sf::Color::Black);
 
 
-	sf::RectangleShape rectangl5;
-	rectangl5.setSize(sf::Vector2f(1000, 50));
-	rectangl5.setOutlineColor(sf::Color::Black);
-	rectangl5.setOutlineThickness(0);
-	rectangl5.setPosition(750, 700);
-	rectangl5.setFillColor(sf::Color::Black);
+	sf::RectangleShape rectangle5;
+	rectangle5.setSize(sf::Vector2f(1000, 50));
+	rectangle5.setOutlineColor(sf::Color::Black);
+	rectangle5.setOutlineThickness(0);
+	rectangle5.setPosition(750, 700);
+	rectangle5.setFillColor(sf::Color::Black);
 
-
+	sf::RectangleShape rectangleArray[5];
+	rectangleArray[0] = rectangle;
+	rectangleArray[1] = rectangle2;
+	rectangleArray[2] = rectangle3;
+	rectangleArray[3] = rectangle4;
+	rectangleArray[4] = rectangle5;
 
 	while (window.isOpen())
 	{
@@ -99,99 +100,21 @@ void wrapper::run_app() {
 
 		}
 
-		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+		//checks collision, builds towers - *need to pass in build tower function*
+		ui->buildtower1(rectangleArray, window);
+		ui->buildtower2(rectangleArray, window);
+		ui->buildtower3(rectangleArray, window);
+		ui->buildtower4(rectangleArray, window);
 
-			click1 = false;
-			click2 = false;
-			click3 = false;
-			click4 = false;
-
-			ui->resetSprite1();
-			ui->resetSprite2();
-			ui->resetSprite3();
-			ui->resetSprite4();
-
-			//check if on path or overlapping another tower
-			//use origin of sprite and size with for loop to check every pixel for intersection
-
-			//for(int i = 0; i < numtowers; i++){
-
-			//for(int x = ui->getTower1().getPosition().x; 
-			//	x < ui->getTower1().getPosition.x + (ui->getTower1().getTexture()->getSize().x * ui->getTower1().getScale().x);
-			//	x++){
-
-			//for(int y = ui->getTower1().getPosition().y; 
-			//	y < ui->getTower1().getPosition.y + (ui->getTower1().getTexture()->getSize().y * ui->getTower1().getScale().y);
-			//	y++){
-
-			//if( Tower[i]->getTowerX() == x && Tower[i]->getTowerY() == y){
-
-			//intersect = true;
-
-			//}
-
-			//}
-			//}
-			//}
-
-			//check if on path
-
-			//if(intersect == false){
-
-			//build tower
-
-			//}
-		}
-
-		//
-		if (click1 == true) {
-
-			ui->moveSprite1(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window)));
-
-		}
-		else if (click2 == true) {
-
-			ui->moveSprite2(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window)));
-
-		}
-		else if (click3 == true) {
-
-			ui->moveSprite3(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window)));
-
-		}
-		else if (click4 == true) {
-
-			ui->moveSprite4(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window)));
-
-		}
-		else if (ui->getTower1().getGlobalBounds().contains(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window))) && sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-
-			click1 = true;
-
-		}
-		else if (ui->getTower2().getGlobalBounds().contains(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window))) && sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-
-			click2 = true;
-
-		}
-		else if (ui->getTower3().getGlobalBounds().contains(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window))) && sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-
-			click3 = true;
-
-		}
-		else if (ui->getTower4().getGlobalBounds().contains(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window))) && sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-
-			click4 = true;
-
-		}
+		ui->draganddrop(window);
 
 		window.clear();
 		window.draw(background);
 		window.draw(rectangle);
 		window.draw(rectangle2);
-		window.draw(rectangl3);
-		window.draw(rectangl4);
-		window.draw(rectangl5);
+		window.draw(rectangle3);
+		window.draw(rectangle4);
+		window.draw(rectangle5);
 		ui->open(window);
 		//window.draw(shape);
 		window.display();

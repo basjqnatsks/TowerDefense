@@ -55,6 +55,11 @@ public:
 	void resetSprite2();
 	void resetSprite3();
 	void resetSprite4();
+	void buildtower1(sf::RectangleShape rectangleArray[5], sf::RenderWindow &window);
+	void buildtower2(sf::RectangleShape rectangleArray[5], sf::RenderWindow &window);
+	void buildtower3(sf::RectangleShape rectangleArray[5], sf::RenderWindow &window);
+	void buildtower4(sf::RectangleShape rectangleArray[5], sf::RenderWindow &window);
+	void draganddrop(sf::RenderWindow &window);
 
 protected:
 
@@ -85,6 +90,13 @@ protected:
 	sf::Texture texture2;
 	sf::Texture texture3;
 	sf::Texture texture4;
+	sf::CircleShape test;
+	bool click1;
+	bool click2;
+	bool click3;
+	bool click4;
+	bool intersect;
+	bool towerbuilt;
 
 };
 
