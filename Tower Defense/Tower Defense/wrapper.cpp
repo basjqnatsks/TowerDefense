@@ -19,7 +19,7 @@ wrapper::~wrapper() {
 void wrapper::run_app() {
 
 
-	sf::RenderWindow window(sf::VideoMode(1400, 950), "Tower Defense");
+	sf::RenderWindow window(sf::VideoMode(1400, 950), "Tower Defense", sf::Style::Close);
 
 	bool click1 = false;
 	bool click2 = false;
