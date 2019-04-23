@@ -1,10 +1,9 @@
 #pragma once
 #include "Entity.h"
-class Tower {
+class Tower : public Entity {
 public:
 	Tower();
 	~Tower();
-
-
-private:
+	int range;
+	int damage;
 };

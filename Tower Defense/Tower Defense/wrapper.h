@@ -21,7 +21,7 @@ public:
 	//getters
 	int get_currency();
 	int get_numoftowers();
-
+	void add_tower(int type, float x, float y);
 
 	//setters
 	void set_currency(int var);

@@ -1,5 +1,5 @@
 #include "wrapper.h"
-
+#include <math.h> 
 
 
 wrapper::wrapper() {
@@ -47,7 +47,39 @@ void wrapper::add_enemy(int type, sf::RenderWindow &win) {
 }
 
 
+void wrapper::add_tower(int type, float x, float y) {
+	Tower var;
+	var.setSize(sf::Vector2f(35, 35));
 
+	
+	
+	var.set_x_axis(x);
+	var.set_y_axis(y);
+	var.setPosition(x, y);
+	if (type == 1) {
+		var.range = 400;
+		var.damage = 1;
+		var.setFillColor(sf::Color(255, 0, 0));
+	}
+	else if (type == 2) {
+		var.range = 150;
+		var.damage = 2;
+		var.setFillColor(sf::Color(255, 255, 0));
+	}
+	else if (type == 3) {
+		var.range = 200;
+		var.damage = 3;
+		var.setFillColor(sf::Color(0, 0, 255));
+	}
+	else if (type == 4) {
+		var.range = 200;
+		var.damage = 2;
+		var.setFillColor(sf::Color(0, 255, 0));
+	}
+	//win.draw(var);
+	//std::cout << "Inside: " << &var << "\n";
+	this->towerstack.push_back(var);
+}
 
 void wrapper::run_app() {
 
@@ -157,7 +189,7 @@ void wrapper::run_app() {
 
 		//GAME HANDLER
 		if (runtime % 2600 == 0 && runtime > 1) {
-			this->add_enemy(1, window);
+			this->add_enemy(4, window);
 
 		}
 		//std::cout << this->enemystack.size() << " " << runtime << "\n";
@@ -179,9 +211,28 @@ void wrapper::run_app() {
 				if ((*iter).get_y() >= 705 && (*iter).get_x() > 705) {
 					(*iter).set_x_axis((*iter).get_x() + 1);
 				}
+
+				for (std::vector<Tower>::iterator iterz = this->towerstack.begin(); iterz != this->towerstack.end(); ++iterz) {
+					int x2 = (*iterz).get_x() - (*iterz).get_x();
+					int x1 = (*iter).get_x() - (*iter).get_x();
+
+					int y2 = (*iterz).get_y() - (*iterz).get_y();
+					int y1 = (*iter).get_y() - (*iter).get_y();
+					int mag = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+
+					if (mag <= (*iterz).range) {
+						(*iter).hp -= (*iterz).damage;
+					}
+				}
+				if ((*iter).hp < 1) {
+					this->enemystack.erase(std::remove(this->enemystack.begin(), this->enemystack.end(), (*iter)), this->enemystack.end());
+				}
+
+
+
 				//enemy got past
 				//mem leak FIXED nvmd
-				std::cout << this->health << "\n";
+				//std::cout << this->health << "\n";
 				if ((*iter).get_x() > 1400) {
 					this->health -= (int)(*iter).hp;
 					if (this->health < 1) {
