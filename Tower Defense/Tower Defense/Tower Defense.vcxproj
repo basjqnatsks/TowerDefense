@@ -166,6 +166,15 @@
     <ClInclude Include="Tower.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Bobcat.jpg" />
+    <Image Include="Eevee.png" />
+    <Image Include="Metal Gear.png" />
+    <Image Include="Valkyr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="DroidSans.ttf" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

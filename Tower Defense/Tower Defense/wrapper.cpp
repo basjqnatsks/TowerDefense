@@ -21,7 +21,10 @@ void wrapper::run_app() {
 
 	sf::RenderWindow window(sf::VideoMode(1400, 950), "Tower Defense");
 
-	bool click = false;
+	bool click1 = false;
+	bool click2 = false;
+	bool click3 = false;
+	bool click4 = false;
 	bool intersect = false;
 
 
@@ -98,9 +101,15 @@ void wrapper::run_app() {
 
 		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 
-			click = false;
+			click1 = false;
+			click2 = false;
+			click3 = false;
+			click4 = false;
 
-			ui->resetSprite();
+			ui->resetSprite1();
+			ui->resetSprite2();
+			ui->resetSprite3();
+			ui->resetSprite4();
 
 			//check if on path or overlapping another tower
 			//use origin of sprite and size with for loop to check every pixel for intersection
@@ -135,17 +144,44 @@ void wrapper::run_app() {
 		}
 
 		//
-		if (click == true) {
+		if (click1 == true) {
 
-			ui->moveSprite(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window)));
+			ui->moveSprite1(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window)));
+
+		}
+		else if (click2 == true) {
+
+			ui->moveSprite2(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window)));
+
+		}
+		else if (click3 == true) {
+
+			ui->moveSprite3(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window)));
+
+		}
+		else if (click4 == true) {
+
+			ui->moveSprite4(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window)));
 
 		}
 		else if (ui->getTower1().getGlobalBounds().contains(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window))) && sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 
-			click = true;
+			click1 = true;
 
+		}
+		else if (ui->getTower2().getGlobalBounds().contains(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window))) && sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 
+			click2 = true;
 
+		}
+		else if (ui->getTower3().getGlobalBounds().contains(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window))) && sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+
+			click3 = true;
+
+		}
+		else if (ui->getTower4().getGlobalBounds().contains(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window))) && sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+
+			click4 = true;
 
 		}
 

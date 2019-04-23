@@ -15,9 +15,12 @@ public:
 	UI();
 	~UI();
 
-	void moveSprite(sf::RenderWindow &window);
+	
 
 	sf::Sprite getTower1();
+	sf::Sprite getTower2();
+	sf::Sprite getTower3();
+	sf::Sprite getTower4();
 
 	//uses mouse cursor position to set coordinates when left mouse button is used
 	void setLocation(sf::RenderWindow &window);
@@ -43,9 +46,15 @@ public:
 
 	virtual void open(sf::RenderWindow &window);
 	sf::CircleShape getUIup();
-	void moveSprite(sf::Vector2f newlocation);
-	void moveSprite();
-	void resetSprite();
+
+	void moveSprite1(sf::Vector2f newlocation);
+	void moveSprite2(sf::Vector2f newlocation);
+	void moveSprite3(sf::Vector2f newlocation);
+	void moveSprite4(sf::Vector2f newlocation);
+	void resetSprite1();
+	void resetSprite2();
+	void resetSprite3();
+	void resetSprite4();
 
 protected:
 
@@ -69,7 +78,13 @@ protected:
 	int points;
 	sf::Text pointsPrint;
 	sf::Sprite tower1;
-	sf::Texture texture;
+	sf::Sprite tower2;
+	sf::Sprite tower3;
+	sf::Sprite tower4;
+	sf::Texture texture1;
+	sf::Texture texture2;
+	sf::Texture texture3;
+	sf::Texture texture4;
 
 };
 
