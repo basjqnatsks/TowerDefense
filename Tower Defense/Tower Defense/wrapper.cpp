@@ -1,19 +1,52 @@
 #include "wrapper.h"
-#include <SFML/Graphics.hpp>
-#include "UI.h"
+
 
 
 wrapper::wrapper() {
 	//starting amount of money       1000?
 	this->Currency = 1000;
+	this->EnemiesDefeated = 0;
+	this->WaveNum = 1;
 
-
-
+	//health
+	this->health = 100;
 
 }
 wrapper::~wrapper() {
 
 }
+
+void wrapper::add_enemy(int type, sf::RenderWindow &win) {
+	Enemy var;
+	var.setSize(sf::Vector2f(35, 35));
+	sf::Texture *texture = new sf::Texture;
+	texture->loadFromFile("slime1.PNG");
+	var.setTexture(texture);
+	var.set_x_axis(0.f);
+	var.set_y_axis(5.f);
+	var.setPosition(0, 0);
+	if (type == 1) {
+		var.hp = 1;
+		var.setFillColor(sf::Color(0, 255, 0));
+	}
+	else if (type == 2) {
+		var.hp = 2;
+		var.setFillColor(sf::Color(255, 0, 0));
+	}
+	else if (type == 3) {
+		var.hp = 3;
+		var.setFillColor(sf::Color(0, 0, 255));
+	}
+	else if (type == 4) {
+		var.hp = 4;
+		var.setFillColor(sf::Color(255, 0, 255));
+	}
+	//win.draw(var);
+	//std::cout << "Inside: " << &var << "\n";
+	this->enemystack.push_back(var);
+}
+
+
 
 
 void wrapper::run_app() {
@@ -24,7 +57,7 @@ void wrapper::run_app() {
 
 
 
-	UI *ui = new UI;
+	UI *ui = new UI(this->Currency, this->EnemiesDefeated, this->WaveNum, this->health);
 
 
 	sf::Texture BackgroundTexture;
@@ -90,6 +123,9 @@ void wrapper::run_app() {
 	rectangleArray[3] = rectangle4;
 	rectangleArray[4] = rectangle5;
 
+
+
+	int runtime = 0;
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -117,7 +153,54 @@ void wrapper::run_app() {
 		window.draw(rectangle5);
 		ui->open(window);
 		//window.draw(shape);
+
+
+		//GAME HANDLER
+		if (runtime % 2600 == 0 && runtime > 1) {
+			this->add_enemy(1, window);
+
+		}
+		//std::cout << this->enemystack.size() << " " << runtime << "\n";
+		if (runtime % 16 == 0) {
+			//std::cout << this->enemystack.size() << "\n";
+			for (std::vector<Enemy>::iterator iter = this->enemystack.begin(); iter != this->enemystack.end(); ++iter) {
+				if ((*iter).get_x() > 255 && (*iter).get_y() < 505) {
+					(*iter).set_y_axis((*iter).get_y() + 1);
+				}
+				if ((*iter).get_x() <= 255 && (*iter).get_x() >= 0) {
+					(*iter).set_x_axis((*iter).get_x() + 1);
+				}
+				if ((*iter).get_y() >= 505 && (*iter).get_x() <= 705) {
+					(*iter).set_x_axis((*iter).get_x() + 1);
+				}
+				if ((*iter).get_y() < 705 && (*iter).get_x() > 705) {
+					(*iter).set_y_axis((*iter).get_y() + 1);
+				}
+				if ((*iter).get_y() >= 705 && (*iter).get_x() > 705) {
+					(*iter).set_x_axis((*iter).get_x() + 1);
+				}
+				//enemy got past
+				//mem leak FIXED nvmd
+				std::cout << this->health << "\n";
+				if ((*iter).get_x() > 1400) {
+					this->health -= (int)(*iter).hp;
+					if (this->health < 1) {
+						return;
+					}
+					this->enemystack.erase(std::remove(this->enemystack.begin(), this->enemystack.end(), (*iter)), this->enemystack.end());
+				}
+				(*iter).setPosition((float)(*iter).get_x(), (float)(*iter).get_y());
+				Enemy null = (*iter);
+				window.draw(null);
+			}
+		}
+
+
 		window.display();
+		Sleep(1);
+		runtime += 16;
+
+
 
 
 

@@ -12,7 +12,7 @@ class UI {
 
 public:
 
-	UI();
+	UI(int &pointsz, int &EnemiesDefeatedz, int &WaveNumz, int &HPz);
 	~UI();
 
 	
@@ -61,13 +61,13 @@ protected:
 	sf::Text EnemiesDefeatedText;
 	sf::Text WaveNumText;
 	sf::Text HPText;
-	int points;
+	int *points;
 	sf::Text pointsPrint;
-	int EnemiesDefeated;
+	int *EnemiesDefeated;
 	sf::Text EnemiesDefeatedPrint;
-	int WaveNum;
+	int *WaveNum;
 	sf::Text WaveNumPrint;
-	int HP;
+	int *HP;
 	sf::Text HPPrint;
 	sf::CircleShape UICircle1;
 	sf::CircleShape UICircle2;

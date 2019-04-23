@@ -1,6 +1,10 @@
 #pragma once
-
-
+#include <SFML/Graphics.hpp>
+#include "UI.h"
+#include <vector>
+#include "Enemy.h"
+#include "Tower.h"
+#include <Windows.h>
 
 
 
@@ -12,7 +16,7 @@ public:
 
 
 	void run_app();
-
+	void add_enemy(int type, sf::RenderWindow &win);
 
 	//getters
 	int get_currency();
@@ -25,7 +29,20 @@ public:
 
 
 private:
+	//money
 	int Currency;
+	//health
+	int health;
+	int EnemiesDefeated;
+	int WaveNum;
+
+	//all enemies struct
+	std::vector<Enemy> enemystack;
+
+	//towers
+	std::vector<Tower> towerstack;
+
+
 
 	//should we have a maximum number of towers???
 	int Numberoftowers;

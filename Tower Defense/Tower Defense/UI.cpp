@@ -1,7 +1,12 @@
 #include "UI.h"
 
 
-UI::UI() {
+UI::UI(int &pointsz, int &EnemiesDefeatedz, int &WaveNumz, int &HPz) {
+	this->points = &pointsz;
+	this->EnemiesDefeated = &EnemiesDefeatedz;
+	this->WaveNum = &WaveNumz;
+	this->HP = &HPz;
+
 
 	click1 = false;
 	click2 = false;
@@ -92,10 +97,7 @@ UI::UI() {
 	HPText.setPosition(630.f, 910.f);
 	HPText.setStyle(sf::Text::Bold);
 
-	points = 1000;
-	EnemiesDefeated = 26;
-	WaveNum = 0;
-	HP = 100;
+
 
 	pointsPrint.setCharacterSize(20);
 	pointsPrint.setFont(font);
@@ -165,10 +167,10 @@ sf::Vector2f UI::getLocation() {
 
 void UI::open(sf::RenderWindow &window) {
 
-	pointsPrint.setString(std::to_string(points));
-	EnemiesDefeatedPrint.setString(std::to_string(EnemiesDefeated));
-	WaveNumPrint.setString(std::to_string(WaveNum));
-	HPPrint.setString(std::to_string(HP));
+	pointsPrint.setString(std::to_string(*this->points));
+	EnemiesDefeatedPrint.setString(std::to_string(*EnemiesDefeated));
+	WaveNumPrint.setString(std::to_string(*WaveNum));
+	HPPrint.setString(std::to_string(*HP));
 
 	window.draw(UIplatform);
 	window.draw(UICircle1);
@@ -342,12 +344,12 @@ void UI::buildtower1(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 		}
 
 		//build tower if no intersection
-		if (intersect == false && points >= 100) {
+		if (intersect == false && *points >= 100) {
 
 			//build tower 1
 			towerbuilt = true;
 
-			points = points - 100;
+			*points = *points - 100;
 
 		}
 		else if (intersect == true) {
@@ -412,11 +414,11 @@ void UI::buildtower2(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 			}
 		}
 
-		if (intersect == false && points >= 120) {
+		if (intersect == false && *points >= 120) {
 
 			//build tower 2
 			towerbuilt = true;
-			points = points - 120;
+			*points = *points - 120;
 
 
 		}
@@ -482,11 +484,11 @@ void UI::buildtower3(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 			}
 		}
 
-		if (intersect == false && points >= 300) {
+		if (intersect == false && *points >= 300) {
 
 			//build tower 3
 			towerbuilt = true;
-			points = points - 300;
+			*points = *points - 300;
 
 
 		}
@@ -552,11 +554,11 @@ void UI::buildtower4(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 			}
 		}
 
-		if (intersect == false && points >= 200) {
+		if (intersect == false && *points >= 200) {
 
 			//build tower 4
 			towerbuilt = true;
-			points = points - 200;
+			*points = *points - 200;
 
 		}
 		else if (intersect == true) {
