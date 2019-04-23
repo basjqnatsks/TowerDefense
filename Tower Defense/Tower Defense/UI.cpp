@@ -521,16 +521,21 @@ void UI::buildtower4(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 					x < rectangleArray[i].getPosition().x + rectangleArray[i].getSize().x;
 					x++) {
 
-					for (float y = rectangleArray[i].getPosition().y;
-						y < rectangleArray[i].getPosition().y + rectangleArray[i].getSize().y;
-						y++) {
+					if (intersect == false) {
 
-						if (tower4.getGlobalBounds().contains(x, y) && intersect == false) {
+						for (float y = rectangleArray[i].getPosition().y;
+							y < rectangleArray[i].getPosition().y + rectangleArray[i].getSize().y;
+							y++) {
 
-							intersect = true;
+							if (tower4.getGlobalBounds().contains(x, y) && intersect == false) {
 
+								intersect = true;
+
+							}
 						}
+
 					}
+
 				}
 
 			}
