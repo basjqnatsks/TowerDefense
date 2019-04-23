@@ -22,10 +22,17 @@ public:
 	sf::Sprite getTower3();
 	sf::Sprite getTower4();
 
-	sf::Vector2f getTower1Location();
-	sf::Vector2f getTower2Location();
-	sf::Vector2f getTower3Location();
-	sf::Vector2f getTower4Location();
+	float getTower1LocationX();
+	float getTower2LocationX();
+	float getTower3LocationX();
+	float getTower4LocationX();
+	float getTower1LocationY();
+	float getTower2LocationY();
+	float getTower3LocationY();
+	float getTower4LocationY();
+
+	bool gettowerbuilt();
+	void settowerbuilt(bool value);
 
 	//uses mouse cursor position to set coordinates when left mouse button is used
 	void setLocation(sf::RenderWindow &window);
