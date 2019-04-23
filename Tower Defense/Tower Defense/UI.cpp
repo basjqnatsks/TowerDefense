@@ -219,6 +219,30 @@ sf::Sprite UI::getTower4() {
 
 }
 
+sf::Vector2f UI::getTower1Location() {
+
+	return tower1.getPosition();
+
+}
+
+sf::Vector2f UI::getTower2Location() {
+
+	return tower2.getPosition();
+
+}
+
+sf::Vector2f UI::getTower3Location() {
+
+	return tower3.getPosition();
+
+}
+
+sf::Vector2f UI::getTower4Location() {
+
+	return tower4.getPosition();
+
+}
+
 void UI::moveSprite1(sf::Vector2f newlocation) {
 
 	tower1.setPosition(newlocation.x - 15.f, newlocation.y - 10.f);
@@ -274,9 +298,8 @@ void UI::buildtower1(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 
 		click1 = false;
 
-		//check if on path or overlapping another tower
-		//use origin of sprite and size with for loop to check every pixel for intersection
-
+		//check if on path
+		//use position of path rectangles and check to see if path pixels contained in sprite
 		for (int i = 0; i < 5; i++) {
 
 			if (intersect == false) {
@@ -301,8 +324,24 @@ void UI::buildtower1(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 
 		}
 
-		//check if on ui platform**********************************************************
+		//check if on ui platform
+		for (float x = UIplatform.getPosition().x - 10.f;
+			x < (UIplatform.getPosition().x - 10.f) + UIplatform.getSize().x + 20.f;
+			x++) {
 
+			for (float y = UIplatform.getPosition().y - 10.f;
+				y < (UIplatform.getPosition().y - 10.f) + UIplatform.getSize().y + 20.f;
+				y++) {
+
+				if (tower1.getGlobalBounds().contains(x, y) && intersect == false) {
+
+					intersect = true;
+
+				}
+			}
+		}
+
+		//build tower if no intersection
 		if (intersect == false && points >= 100) {
 
 			//build tower 1
@@ -330,9 +369,8 @@ void UI::buildtower2(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 
 		click2 = false;
 
-		//check if on path or overlapping another tower
-		//use origin of sprite and size with for loop to check every pixel for intersection
-
+		//check if on path
+		//use position of path rectangles and check to see if path pixels contained in sprite
 		for (int i = 0; i < 5; i++) {
 
 			if (intersect == false) {
@@ -355,6 +393,23 @@ void UI::buildtower2(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 
 			}
 
+		}
+
+		//check if on ui platform
+		for (float x = UIplatform.getPosition().x - 10.f;
+			x < (UIplatform.getPosition().x - 10.f) + UIplatform.getSize().x + 20.f;
+			x++) {
+
+			for (float y = UIplatform.getPosition().y - 10.f;
+				y < (UIplatform.getPosition().y - 10.f) + UIplatform.getSize().y + 20.f;
+				y++) {
+
+				if (tower2.getGlobalBounds().contains(x, y) && intersect == false) {
+
+					intersect = true;
+
+				}
+			}
 		}
 
 		if (intersect == false && points >= 120) {
@@ -384,9 +439,8 @@ void UI::buildtower3(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 
 		click3 = false;
 		
-		//check if on path or overlapping another tower
-		//use origin of sprite and size with for loop to check every pixel for intersection
-
+		//check if on path
+		//use position of path rectangles and check to see if path pixels contained in sprite
 		for (int i = 0; i < 5; i++) {
 
 			if (intersect == false) {
@@ -409,6 +463,23 @@ void UI::buildtower3(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 
 			}
 
+		}
+
+		//check if on ui platform
+		for (float x = UIplatform.getPosition().x - 10.f;
+			x < (UIplatform.getPosition().x - 10.f) + UIplatform.getSize().x + 20.f;
+			x++) {
+
+			for (float y = UIplatform.getPosition().y - 10.f;
+				y < (UIplatform.getPosition().y - 10.f) + UIplatform.getSize().y + 20.f;
+				y++) {
+
+				if (tower3.getGlobalBounds().contains(x, y) && intersect == false) {
+
+					intersect = true;
+
+				}
+			}
 		}
 
 		if (intersect == false && points >= 300) {
@@ -438,9 +509,8 @@ void UI::buildtower4(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 
 		click4 = false;
 
-		//check if on path or overlapping another tower
-		//use origin of sprite and size with for loop to check every pixel for intersection
-
+		//check if on path
+		//use position of path rectangles and check to see if path pixels contained in sprite
 		for (int i = 0; i < 5; i++) {
 
 			if (intersect == false) {
@@ -463,6 +533,23 @@ void UI::buildtower4(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 
 			}
 
+		}
+
+		//check if on ui platform
+		for (float x = UIplatform.getPosition().x - 10.f;
+			x < (UIplatform.getPosition().x - 10.f) + UIplatform.getSize().x + 20.f;
+			x++) {
+
+			for (float y = UIplatform.getPosition().y - 10.f;
+				y < (UIplatform.getPosition().y - 10.f) + UIplatform.getSize().y + 20.f;
+				y++) {
+
+				if (tower4.getGlobalBounds().contains(x, y) && intersect == false) {
+
+					intersect = true;
+
+				}
+			}
 		}
 
 		if (intersect == false && points >= 200) {
@@ -529,11 +616,3 @@ void UI::draganddrop(sf::RenderWindow &window) {
 	}
 
 }
-
-
-
-//will need later
-//sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
-//sf::Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mousePosition);
-
-//comment
