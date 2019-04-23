@@ -170,6 +170,7 @@
   <ItemGroup>
     <Image Include="Bobcat.jpg" />
     <Image Include="Eevee.png" />
+    <Image Include="grass.png" />
     <Image Include="Metal Gear.png" />
     <Image Include="Valkyr.png" />
   </ItemGroup>

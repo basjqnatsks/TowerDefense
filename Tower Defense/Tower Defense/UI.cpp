@@ -3,6 +3,13 @@
 
 UI::UI() {
 
+	click1 = false;
+	click2 = false;
+	click3 = false;
+	click4 = false;
+	intersect = false;
+	towerbuilt = false;
+
 	location = sf::Vector2f(100.f, 100.f);
 
 	UIplatform.setSize(sf::Vector2f(900.f, 150.f));
@@ -11,55 +18,55 @@ UI::UI() {
 	UIplatform.setOutlineColor(sf::Color::White);
 	UIplatform.setPosition(0.f, 800.f);
 
-	UIup.setRadius(35.f);
-	UIup.setFillColor(sf::Color::Black);
-	UIup.setOutlineThickness(2.f);
-	UIup.setOutlineColor(sf::Color::White);
-	UIup.setPosition(37.f, 810.f);
+	UICircle1.setRadius(35.f);
+	UICircle1.setFillColor(sf::Color::Black);
+	UICircle1.setOutlineThickness(2.f);
+	UICircle1.setOutlineColor(sf::Color::White);
+	UICircle1.setPosition(37.f, 810.f);
 
-	UIdown.setRadius(35.f);
-	UIdown.setFillColor(sf::Color::Black);
-	UIdown.setOutlineThickness(2.f);
-	UIdown.setOutlineColor(sf::Color::White);
-	UIdown.setPosition(192.f, 810.f);
+	UICircle2.setRadius(35.f);
+	UICircle2.setFillColor(sf::Color::Black);
+	UICircle2.setOutlineThickness(2.f);
+	UICircle2.setOutlineColor(sf::Color::White);
+	UICircle2.setPosition(192.f, 810.f);
 
-	UIleft.setRadius(35.f);
-	UIleft.setFillColor(sf::Color::Black);
-	UIleft.setOutlineThickness(2.f);
-	UIleft.setOutlineColor(sf::Color::White);
-	UIleft.setPosition(347.f, 810.f);
+	UICircle3.setRadius(35.f);
+	UICircle3.setFillColor(sf::Color::Black);
+	UICircle3.setOutlineThickness(2.f);
+	UICircle3.setOutlineColor(sf::Color::White);
+	UICircle3.setPosition(347.f, 810.f);
 
-	UIright.setRadius(35.f);
-	UIright.setFillColor(sf::Color::Black);
-	UIright.setOutlineThickness(2.f);
-	UIright.setOutlineColor(sf::Color::White);
-	UIright.setPosition(502.f, 810.f);
+	UICircle4.setRadius(35.f);
+	UICircle4.setFillColor(sf::Color::Black);
+	UICircle4.setOutlineThickness(2.f);
+	UICircle4.setOutlineColor(sf::Color::White);
+	UICircle4.setPosition(502.f, 810.f);
 
 	font.loadFromFile("DroidSans.ttf");
 
-	textUp.setCharacterSize(20);
-	textUp.setString("Arrow Tower \n       100");
-	textUp.setFont(font);
-	textUp.setPosition(12.f, 890.f);
-	textUp.setStyle(sf::Text::Bold);
+	text1.setCharacterSize(20);
+	text1.setString("Arrow Tower \n       100");
+	text1.setFont(font);
+	text1.setPosition(12.f, 890.f);
+	text1.setStyle(sf::Text::Bold);
 
-	textDown.setCharacterSize(20);
-	textDown.setString("Cannon Tower \n         120");
-	textDown.setFont(font);
-	textDown.setPosition(162.f, 890.f);
-	textDown.setStyle(sf::Text::Bold);
+	text2.setCharacterSize(20);
+	text2.setString("Cannon Tower \n         120");
+	text2.setFont(font);
+	text2.setPosition(162.f, 890.f);
+	text2.setStyle(sf::Text::Bold);
 
-	textLeft.setCharacterSize(20);
-	textLeft.setString("Fire Tower \n     300");
-	textLeft.setFont(font);
-	textLeft.setPosition(332.f, 890.f);
-	textLeft.setStyle(sf::Text::Bold);
+	text3.setCharacterSize(20);
+	text3.setString("Fire Tower \n     300");
+	text3.setFont(font);
+	text3.setPosition(332.f, 890.f);
+	text3.setStyle(sf::Text::Bold);
 
-	textRight.setCharacterSize(20);
-	textRight.setString("Laser Tower \n      200");
-	textRight.setFont(font);
-	textRight.setPosition(480.f, 890.f);
-	textRight.setStyle(sf::Text::Bold);
+	text4.setCharacterSize(20);
+	text4.setString("Laser Tower \n      200");
+	text4.setFont(font);
+	text4.setPosition(480.f, 890.f);
+	text4.setStyle(sf::Text::Bold);
 
 	pointsText.setCharacterSize(20);
 	pointsText.setString("Points: ");
@@ -67,43 +74,67 @@ UI::UI() {
 	pointsText.setPosition(630.f, 820.f);
 	pointsText.setStyle(sf::Text::Bold);
 
-	EnemiesDefeated.setCharacterSize(20);
-	EnemiesDefeated.setString("Enemies Defeated: ");
-	EnemiesDefeated.setFont(font);
-	EnemiesDefeated.setPosition(630.f, 850.f);
-	EnemiesDefeated.setStyle(sf::Text::Bold);
+	EnemiesDefeatedText.setCharacterSize(20);
+	EnemiesDefeatedText.setString("Enemies Defeated: ");
+	EnemiesDefeatedText.setFont(font);
+	EnemiesDefeatedText.setPosition(630.f, 850.f);
+	EnemiesDefeatedText.setStyle(sf::Text::Bold);
 
-	WaveNum.setCharacterSize(20);
-	WaveNum.setString("Wave: ");
-	WaveNum.setFont(font);
-	WaveNum.setPosition(630.f, 880.f);
-	WaveNum.setStyle(sf::Text::Bold);
+	WaveNumText.setCharacterSize(20);
+	WaveNumText.setString("Wave: ");
+	WaveNumText.setFont(font);
+	WaveNumText.setPosition(630.f, 880.f);
+	WaveNumText.setStyle(sf::Text::Bold);
 
-	points = 0;
+	HPText.setCharacterSize(20);
+	HPText.setString("HP: ");
+	HPText.setFont(font);
+	HPText.setPosition(630.f, 910.f);
+	HPText.setStyle(sf::Text::Bold);
+
+	points = 1000;
+	EnemiesDefeated = 26;
+	WaveNum = 0;
+	HP = 100;
 
 	pointsPrint.setCharacterSize(20);
 	pointsPrint.setFont(font);
-	pointsPrint.setPosition(730.f, 820.f);
+	pointsPrint.setPosition(710.f, 820.f);
 	pointsPrint.setStyle(sf::Text::Bold);
+
+	EnemiesDefeatedPrint.setCharacterSize(20);
+	EnemiesDefeatedPrint.setFont(font);
+	EnemiesDefeatedPrint.setPosition(830.f, 850.f);
+	EnemiesDefeatedPrint.setStyle(sf::Text::Bold);
+
+	WaveNumPrint.setCharacterSize(20);
+	WaveNumPrint.setFont(font);
+	WaveNumPrint.setPosition(710.f, 880.f);
+	WaveNumPrint.setStyle(sf::Text::Bold);
+
+	HPPrint.setCharacterSize(20);
+	HPPrint.setFont(font);
+	HPPrint.setPosition(670.f, 910.f);
+	HPPrint.setStyle(sf::Text::Bold);
 
 	texture1.loadFromFile("Bobcat.jpg");
 	tower1.setTexture(texture1);
-	tower1.setPosition(100.f, 100.f);
+	tower1.setPosition(51.f, 832.f);
 	tower1.setScale(0.05f, 0.05f);
 
 	texture2.loadFromFile("Eevee.png");
 	tower2.setTexture(texture2);
-	tower2.setPosition(100.f, 100.f);
+	tower2.setPosition(206.f, 832.f);
 	tower2.setScale(0.2f, 0.2f);
 
 	texture3.loadFromFile("Metal Gear.png");
 	tower3.setTexture(texture3);
-	tower3.setPosition(100.f, 100.f);
+	tower3.setPosition(361.f, 832.f);
 	tower3.setScale(0.02f, 0.02f);
 
 	texture4.loadFromFile("Valkyr.png");
 	tower4.setTexture(texture4);
-	tower4.setPosition(100.f, 100.f);
+	tower4.setPosition(516.f, 832.f);
 	tower4.setScale(0.1f, 0.1f);
 
 }
@@ -132,93 +163,35 @@ sf::Vector2f UI::getLocation() {
 
 }
 
-void UI::setUIupPostion() {
-
-	UIup.setPosition(location.x - 50.f, location.y - 150.f);
-
-}
-
-void UI::setUIdownPosition() {
-
-	UIdown.setPosition(location.x - 50.f, location.y + 50.f);
-
-}
-
-void UI::setUIleftPosition() {
-
-	UIleft.setPosition(location.x - 150.f, location.y - 50.f);
-
-}
-
-void UI::setUIrightPosition() {
-
-	UIright.setPosition(location.x + 50.f, location.y - 50.f);
-
-}
-
-void UI::setUIcenterPosition() {
-
-	UIcenter.setPosition(location.x - 5.f, location.y - 5.f);
-
-}
-
-void UI::setUIupColor(sf::Color fillColor, sf::Color outlineColor) {
-
-	UIup.setFillColor(fillColor);
-	UIup.setOutlineColor(outlineColor);
-
-}
-
-void UI::setUIdownColor(sf::Color fillColor, sf::Color outlineColor) {
-
-	UIdown.setFillColor(fillColor);
-	UIdown.setOutlineColor(outlineColor);
-
-}
-
-void UI::setUIleftColor(sf::Color fillColor, sf::Color outlineColor) {
-
-	UIleft.setFillColor(fillColor);
-	UIleft.setOutlineColor(outlineColor);
-
-}
-
-void UI::setUIrightColor(sf::Color fillColor, sf::Color outlineColor) {
-
-	UIright.setFillColor(fillColor);
-	UIright.setOutlineColor(outlineColor);
-
-}
-
-void UI::setUIcenterColor(sf::Color fillColor, sf::Color outlineColor) {
-
-	UIcenter.setFillColor(fillColor);
-	UIcenter.setOutlineColor(outlineColor);
-
-}
-
 void UI::open(sf::RenderWindow &window) {
 
 	pointsPrint.setString(std::to_string(points));
+	EnemiesDefeatedPrint.setString(std::to_string(EnemiesDefeated));
+	WaveNumPrint.setString(std::to_string(WaveNum));
+	HPPrint.setString(std::to_string(HP));
 
 	window.draw(UIplatform);
-	window.draw(UIup);
-	window.draw(UIdown);
-	window.draw(UIleft);
-	window.draw(UIright);
+	window.draw(UICircle1);
+	window.draw(UICircle2);
+	window.draw(UICircle3);
+	window.draw(UICircle4);
 
-	window.draw(textUp);
-	window.draw(textDown);
-	window.draw(textLeft);
-	window.draw(textRight);
+	window.draw(text1);
+	window.draw(text2);
+	window.draw(text3);
+	window.draw(text4);
 	window.draw(pointsText);
-	window.draw(EnemiesDefeated);
-	window.draw(WaveNum);
+	window.draw(EnemiesDefeatedText);
+	window.draw(WaveNumText);
+	window.draw(HPText);
 	window.draw(tower1);
 	window.draw(tower2);
 	window.draw(tower3);
 	window.draw(tower4);
 	window.draw(pointsPrint);
+	window.draw(EnemiesDefeatedPrint);
+	window.draw(WaveNumPrint);
+	window.draw(HPPrint);
 
 }
 
@@ -246,9 +219,27 @@ sf::Sprite UI::getTower4() {
 
 }
 
-sf::CircleShape UI::getUIup() {
+sf::Vector2f UI::getTower1Location() {
 
-	return UIup;
+	return tower1.getPosition();
+
+}
+
+sf::Vector2f UI::getTower2Location() {
+
+	return tower2.getPosition();
+
+}
+
+sf::Vector2f UI::getTower3Location() {
+
+	return tower3.getPosition();
+
+}
+
+sf::Vector2f UI::getTower4Location() {
+
+	return tower4.getPosition();
 
 }
 
@@ -300,8 +291,328 @@ void UI::resetSprite4() {
 
 }
 
-//will need later
-//sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
-//sf::Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mousePosition);
+void UI::buildtower1(sf::RectangleShape rectangleArray[5], sf::RenderWindow &window) {
 
-//comment
+	//"drops" sprites, builds tower if not on path
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && click1 == true) {
+
+		click1 = false;
+
+		//check if on path
+		//use position of path rectangles and check to see if path pixels contained in sprite
+		for (int i = 0; i < 5; i++) {
+
+			if (intersect == false) {
+
+				for (float x = rectangleArray[i].getPosition().x;
+					x < rectangleArray[i].getPosition().x + rectangleArray[i].getSize().x;
+					x++) {
+
+					for (float y = rectangleArray[i].getPosition().y;
+						y < rectangleArray[i].getPosition().y + rectangleArray[i].getSize().y;
+						y++) {
+
+						if (tower1.getGlobalBounds().contains(x, y) && intersect == false) {
+
+							intersect = true;
+
+						}
+					}
+				}
+
+			}
+
+		}
+
+		//check if on ui platform
+		for (float x = UIplatform.getPosition().x - 10.f;
+			x < (UIplatform.getPosition().x - 10.f) + UIplatform.getSize().x + 20.f;
+			x++) {
+
+			for (float y = UIplatform.getPosition().y - 10.f;
+				y < (UIplatform.getPosition().y - 10.f) + UIplatform.getSize().y + 20.f;
+				y++) {
+
+				if (tower1.getGlobalBounds().contains(x, y) && intersect == false) {
+
+					intersect = true;
+
+				}
+			}
+		}
+
+		//build tower if no intersection
+		if (intersect == false && points >= 100) {
+
+			//build tower 1
+			towerbuilt = true;
+
+			points = points - 100;
+
+		}
+		else if (intersect == true) {
+
+			intersect = false;
+
+		}
+
+		resetSprite1();
+		
+	}
+
+}	
+
+void UI::buildtower2(sf::RectangleShape rectangleArray[5], sf::RenderWindow &window) {
+
+	//"drops" sprites, builds tower if not on path
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && click2 == true) {
+
+		click2 = false;
+
+		//check if on path
+		//use position of path rectangles and check to see if path pixels contained in sprite
+		for (int i = 0; i < 5; i++) {
+
+			if (intersect == false) {
+
+				for (float x = rectangleArray[i].getPosition().x;
+					x < rectangleArray[i].getPosition().x + rectangleArray[i].getSize().x;
+					x++) {
+
+					for (float y = rectangleArray[i].getPosition().y;
+						y < rectangleArray[i].getPosition().y + rectangleArray[i].getSize().y;
+						y++) {
+
+						if (tower2.getGlobalBounds().contains(x, y) && intersect == false) {
+
+							intersect = true;
+
+						}
+					}
+				}
+
+			}
+
+		}
+
+		//check if on ui platform
+		for (float x = UIplatform.getPosition().x - 10.f;
+			x < (UIplatform.getPosition().x - 10.f) + UIplatform.getSize().x + 20.f;
+			x++) {
+
+			for (float y = UIplatform.getPosition().y - 10.f;
+				y < (UIplatform.getPosition().y - 10.f) + UIplatform.getSize().y + 20.f;
+				y++) {
+
+				if (tower2.getGlobalBounds().contains(x, y) && intersect == false) {
+
+					intersect = true;
+
+				}
+			}
+		}
+
+		if (intersect == false && points >= 120) {
+
+			//build tower 2
+			towerbuilt = true;
+			points = points - 120;
+
+
+		}
+		else if (intersect == true) {
+
+			intersect = false;
+
+		}
+
+		resetSprite2();
+
+	}
+
+}
+
+void UI::buildtower3(sf::RectangleShape rectangleArray[5], sf::RenderWindow &window) {
+
+	//"drops" sprites, builds tower if not on path
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && click3 == true) {
+
+		click3 = false;
+		
+		//check if on path
+		//use position of path rectangles and check to see if path pixels contained in sprite
+		for (int i = 0; i < 5; i++) {
+
+			if (intersect == false) {
+
+				for (float x = rectangleArray[i].getPosition().x;
+					x < rectangleArray[i].getPosition().x + rectangleArray[i].getSize().x;
+					x++) {
+
+					for (float y = rectangleArray[i].getPosition().y;
+						y < rectangleArray[i].getPosition().y + rectangleArray[i].getSize().y;
+						y++) {
+
+						if (tower3.getGlobalBounds().contains(x, y) && intersect == false) {
+
+							intersect = true;
+
+						}
+					}
+				}
+
+			}
+
+		}
+
+		//check if on ui platform
+		for (float x = UIplatform.getPosition().x - 10.f;
+			x < (UIplatform.getPosition().x - 10.f) + UIplatform.getSize().x + 20.f;
+			x++) {
+
+			for (float y = UIplatform.getPosition().y - 10.f;
+				y < (UIplatform.getPosition().y - 10.f) + UIplatform.getSize().y + 20.f;
+				y++) {
+
+				if (tower3.getGlobalBounds().contains(x, y) && intersect == false) {
+
+					intersect = true;
+
+				}
+			}
+		}
+
+		if (intersect == false && points >= 300) {
+
+			//build tower 3
+			towerbuilt = true;
+			points = points - 300;
+
+
+		}
+		else if (intersect == true) {
+
+			intersect = false;
+
+		}
+
+		resetSprite3();
+
+	}
+
+}
+
+void UI::buildtower4(sf::RectangleShape rectangleArray[5], sf::RenderWindow &window) {
+
+	//"drops" sprites, builds tower if not on path
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && click4 == true) {
+
+		click4 = false;
+
+		//check if on path
+		//use position of path rectangles and check to see if path pixels contained in sprite
+		for (int i = 0; i < 5; i++) {
+
+			if (intersect == false) {
+
+				for (float x = rectangleArray[i].getPosition().x;
+					x < rectangleArray[i].getPosition().x + rectangleArray[i].getSize().x;
+					x++) {
+
+					for (float y = rectangleArray[i].getPosition().y;
+						y < rectangleArray[i].getPosition().y + rectangleArray[i].getSize().y;
+						y++) {
+
+						if (tower4.getGlobalBounds().contains(x, y) && intersect == false) {
+
+							intersect = true;
+
+						}
+					}
+				}
+
+			}
+
+		}
+
+		//check if on ui platform
+		for (float x = UIplatform.getPosition().x - 10.f;
+			x < (UIplatform.getPosition().x - 10.f) + UIplatform.getSize().x + 20.f;
+			x++) {
+
+			for (float y = UIplatform.getPosition().y - 10.f;
+				y < (UIplatform.getPosition().y - 10.f) + UIplatform.getSize().y + 20.f;
+				y++) {
+
+				if (tower4.getGlobalBounds().contains(x, y) && intersect == false) {
+
+					intersect = true;
+
+				}
+			}
+		}
+
+		if (intersect == false && points >= 200) {
+
+			//build tower 4
+			towerbuilt = true;
+			points = points - 200;
+
+		}
+		else if (intersect == true) {
+
+			intersect = false;
+
+		}
+
+		resetSprite4();
+
+	}
+
+}
+
+void UI::draganddrop(sf::RenderWindow &window) {
+
+	//enables drag and drop movement of sprites
+	if (click1 == true) {
+
+		moveSprite1(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window)));
+
+	}
+	else if (click2 == true) {
+
+		moveSprite2(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window)));
+
+	}
+	else if (click3 == true) {
+
+		moveSprite3(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window)));
+
+	}
+	else if (click4 == true) {
+
+		moveSprite4(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window)));
+
+	}
+	else if (getTower1().getGlobalBounds().contains(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window))) && sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+
+		click1 = true;
+
+	}
+	else if (getTower2().getGlobalBounds().contains(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window))) && sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+
+		click2 = true;
+
+	}
+	else if (getTower3().getGlobalBounds().contains(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window))) && sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+
+		click3 = true;
+
+	}
+	else if (getTower4().getGlobalBounds().contains(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window))) && sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+
+		click4 = true;
+
+	}
+
+}
