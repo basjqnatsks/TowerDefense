@@ -221,27 +221,51 @@ sf::Sprite UI::getTower4() {
 
 }
 
-sf::Vector2f UI::getTower1Location() {
+float UI::getTower1LocationX() {
 
-	return tower1.getPosition();
-
-}
-
-sf::Vector2f UI::getTower2Location() {
-
-	return tower2.getPosition();
+	return tower1.getPosition().x - 15.f;
 
 }
 
-sf::Vector2f UI::getTower3Location() {
+float UI::getTower2LocationX() {
 
-	return tower3.getPosition();
+	return tower2.getPosition().x - 15.f;
 
 }
 
-sf::Vector2f UI::getTower4Location() {
+float UI::getTower3LocationX() {
 
-	return tower4.getPosition();
+	return tower3.getPosition().x - 15.f;
+
+}
+
+float UI::getTower4LocationX() {
+
+	return tower4.getPosition().x - 15.f;
+
+}
+
+float UI::getTower1LocationY() {
+
+	return tower1.getPosition().y - 10.f;
+
+}
+
+float UI::getTower2LocationY() {
+
+	return tower2.getPosition().y - 10.f;
+
+}
+
+float UI::getTower3LocationY() {
+
+	return tower3.getPosition().y - 10.f;
+
+}
+
+float UI::getTower4LocationY() {
+
+	return tower4.getPosition().y - 10.f;
 
 }
 
@@ -310,16 +334,22 @@ void UI::buildtower1(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 					x < rectangleArray[i].getPosition().x + rectangleArray[i].getSize().x;
 					x++) {
 
-					for (float y = rectangleArray[i].getPosition().y;
-						y < rectangleArray[i].getPosition().y + rectangleArray[i].getSize().y;
-						y++) {
+					if (intersect == false) {
 
-						if (tower1.getGlobalBounds().contains(x, y) && intersect == false) {
+						for (float y = rectangleArray[i].getPosition().y;
+							y < rectangleArray[i].getPosition().y + rectangleArray[i].getSize().y;
+							y++) {
 
-							intersect = true;
+							if (tower1.getGlobalBounds().contains(x, y) && intersect == false) {
+
+								intersect = true;
+
+							}
 
 						}
+
 					}
+
 				}
 
 			}
@@ -331,14 +361,17 @@ void UI::buildtower1(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 			x < (UIplatform.getPosition().x - 10.f) + UIplatform.getSize().x + 20.f;
 			x++) {
 
-			for (float y = UIplatform.getPosition().y - 10.f;
-				y < (UIplatform.getPosition().y - 10.f) + UIplatform.getSize().y + 20.f;
-				y++) {
+			if (intersect == false) {
 
-				if (tower1.getGlobalBounds().contains(x, y) && intersect == false) {
+				for (float y = UIplatform.getPosition().y - 10.f;
+					y < (UIplatform.getPosition().y - 10.f) + UIplatform.getSize().y + 20.f;
+					y++) {
 
-					intersect = true;
+					if (tower1.getGlobalBounds().contains(x, y) && intersect == false) {
 
+						intersect = true;
+
+					}
 				}
 			}
 		}
@@ -357,8 +390,6 @@ void UI::buildtower1(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 			intersect = false;
 
 		}
-
-		resetSprite1();
 		
 	}
 
@@ -381,16 +412,22 @@ void UI::buildtower2(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 					x < rectangleArray[i].getPosition().x + rectangleArray[i].getSize().x;
 					x++) {
 
-					for (float y = rectangleArray[i].getPosition().y;
-						y < rectangleArray[i].getPosition().y + rectangleArray[i].getSize().y;
-						y++) {
+					if (intersect == false) {
 
-						if (tower2.getGlobalBounds().contains(x, y) && intersect == false) {
+						for (float y = rectangleArray[i].getPosition().y;
+							y < rectangleArray[i].getPosition().y + rectangleArray[i].getSize().y;
+							y++) {
 
-							intersect = true;
+							if (tower2.getGlobalBounds().contains(x, y) && intersect == false) {
+
+								intersect = true;
+
+							}
 
 						}
+
 					}
+
 				}
 
 			}
@@ -402,16 +439,22 @@ void UI::buildtower2(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 			x < (UIplatform.getPosition().x - 10.f) + UIplatform.getSize().x + 20.f;
 			x++) {
 
-			for (float y = UIplatform.getPosition().y - 10.f;
-				y < (UIplatform.getPosition().y - 10.f) + UIplatform.getSize().y + 20.f;
-				y++) {
+			if (intersect == false) {
 
-				if (tower2.getGlobalBounds().contains(x, y) && intersect == false) {
+				for (float y = UIplatform.getPosition().y - 10.f;
+					y < (UIplatform.getPosition().y - 10.f) + UIplatform.getSize().y + 20.f;
+					y++) {
 
-					intersect = true;
+					if (tower2.getGlobalBounds().contains(x, y) && intersect == false) {
+
+						intersect = true;
+
+					}
 
 				}
+
 			}
+
 		}
 
 		if (intersect == false && *points >= 120) {
@@ -427,8 +470,6 @@ void UI::buildtower2(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 			intersect = false;
 
 		}
-
-		resetSprite2();
 
 	}
 
@@ -451,16 +492,22 @@ void UI::buildtower3(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 					x < rectangleArray[i].getPosition().x + rectangleArray[i].getSize().x;
 					x++) {
 
-					for (float y = rectangleArray[i].getPosition().y;
-						y < rectangleArray[i].getPosition().y + rectangleArray[i].getSize().y;
-						y++) {
+					if (intersect == false) {
 
-						if (tower3.getGlobalBounds().contains(x, y) && intersect == false) {
+						for (float y = rectangleArray[i].getPosition().y;
+							y < rectangleArray[i].getPosition().y + rectangleArray[i].getSize().y;
+							y++) {
 
-							intersect = true;
+							if (tower3.getGlobalBounds().contains(x, y) && intersect == false) {
+
+								intersect = true;
+
+							}
 
 						}
+
 					}
+
 				}
 
 			}
@@ -472,16 +519,22 @@ void UI::buildtower3(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 			x < (UIplatform.getPosition().x - 10.f) + UIplatform.getSize().x + 20.f;
 			x++) {
 
-			for (float y = UIplatform.getPosition().y - 10.f;
-				y < (UIplatform.getPosition().y - 10.f) + UIplatform.getSize().y + 20.f;
-				y++) {
+			if (intersect == false) {
 
-				if (tower3.getGlobalBounds().contains(x, y) && intersect == false) {
+				for (float y = UIplatform.getPosition().y - 10.f;
+					y < (UIplatform.getPosition().y - 10.f) + UIplatform.getSize().y + 20.f;
+					y++) {
 
-					intersect = true;
+					if (tower3.getGlobalBounds().contains(x, y) && intersect == false) {
+
+						intersect = true;
+
+					}
 
 				}
+
 			}
+
 		}
 
 		if (intersect == false && *points >= 300) {
@@ -497,8 +550,6 @@ void UI::buildtower3(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 			intersect = false;
 
 		}
-
-		resetSprite3();
 
 	}
 
@@ -521,16 +572,21 @@ void UI::buildtower4(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 					x < rectangleArray[i].getPosition().x + rectangleArray[i].getSize().x;
 					x++) {
 
-					for (float y = rectangleArray[i].getPosition().y;
-						y < rectangleArray[i].getPosition().y + rectangleArray[i].getSize().y;
-						y++) {
+					if (intersect == false) {
 
-						if (tower4.getGlobalBounds().contains(x, y) && intersect == false) {
+						for (float y = rectangleArray[i].getPosition().y;
+							y < rectangleArray[i].getPosition().y + rectangleArray[i].getSize().y;
+							y++) {
 
-							intersect = true;
+							if (tower4.getGlobalBounds().contains(x, y) && intersect == false) {
 
+								intersect = true;
+
+							}
 						}
+
 					}
+
 				}
 
 			}
@@ -542,14 +598,17 @@ void UI::buildtower4(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 			x < (UIplatform.getPosition().x - 10.f) + UIplatform.getSize().x + 20.f;
 			x++) {
 
-			for (float y = UIplatform.getPosition().y - 10.f;
-				y < (UIplatform.getPosition().y - 10.f) + UIplatform.getSize().y + 20.f;
-				y++) {
+			if (intersect == false) {
 
-				if (tower4.getGlobalBounds().contains(x, y) && intersect == false) {
+				for (float y = UIplatform.getPosition().y - 10.f;
+					y < (UIplatform.getPosition().y - 10.f) + UIplatform.getSize().y + 20.f;
+					y++) {
 
-					intersect = true;
+					if (tower4.getGlobalBounds().contains(x, y) && intersect == false) {
 
+						intersect = true;
+
+					}
 				}
 			}
 		}
@@ -566,8 +625,6 @@ void UI::buildtower4(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 			intersect = false;
 
 		}
-
-		resetSprite4();
 
 	}
 
@@ -616,5 +673,17 @@ void UI::draganddrop(sf::RenderWindow &window) {
 		click4 = true;
 
 	}
+
+}
+
+bool UI::gettowerbuilt() {
+
+	return towerbuilt;
+
+}
+
+void UI::settowerbuilt(bool value) {
+
+	towerbuilt = value;
 
 }

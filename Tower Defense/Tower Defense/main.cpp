@@ -7,6 +7,9 @@
 #include <iostream>
 int main() {
 
+	wrapper app;
+	app.run_app();
+
 	std::cout << system("curl -i -H \"Accept: application/json\" -H \"Content-Type: application/json\" -X GET https://raw.githubusercontent.com/basjqnatsks/TowerDefense/master/Tower%20Defense/Menu.txt");
 
 	return 0;
