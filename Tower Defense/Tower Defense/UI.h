@@ -24,28 +24,12 @@ public:
 
 	//uses mouse cursor position to set coordinates when left mouse button is used
 	void setLocation(sf::RenderWindow &window);
-	//void setSelectLocation(sf::Vector2f newLocation);
 
 	//temporary functions
 	sf::Vector2f getLocation();
-	//sf::Vector2f getSelectLocation();
 
-	void setUIupPostion();
-	void setUIdownPosition();
-	void setUIleftPosition();
-	void setUIrightPosition();
-	void setUIcenterPosition();
-	
-	
-	void setUIupColor(sf::Color fillColor, sf::Color outlineColor);
-	void setUIdownColor(sf::Color fillColor, sf::Color outlineColor);
-	void setUIleftColor(sf::Color fillColor, sf::Color outlineColor);
-	void setUIrightColor(sf::Color fillColor, sf::Color outlineColor);
-	void setUIcenterColor(sf::Color fillColor, sf::Color outlineColor);
-	
-
+	//used functions
 	virtual void open(sf::RenderWindow &window);
-	sf::CircleShape getUIup();
 
 	void moveSprite1(sf::Vector2f newlocation);
 	void moveSprite2(sf::Vector2f newlocation);
@@ -64,24 +48,28 @@ public:
 protected:
 
 	sf::Vector2f location;
-	sf::Vector2f UIlocation;
-	sf::Text textUp;
-	sf::Text textDown;
-	sf::Text textLeft;
-	sf::Text textRight;
+	sf::Text text1;
+	sf::Text text2;
+	sf::Text text3;
+	sf::Text text4;
 	sf::Text pointsText;
-	sf::Text EnemiesDefeated;
-	sf::Text WaveNum;
-	sf::CircleShape UIup;
-	sf::CircleShape UIdown;
-	sf::CircleShape UIleft;
-	sf::CircleShape UIright;
-	sf::CircleShape UIcenter;
-	sf::RectangleShape UIplatform;
-	sf::Font font;
-	sf::Vector2f selectLocation;
+	sf::Text EnemiesDefeatedText;
+	sf::Text WaveNumText;
+	sf::Text HPText;
 	int points;
 	sf::Text pointsPrint;
+	int EnemiesDefeated;
+	sf::Text EnemiesDefeatedPrint;
+	int WaveNum;
+	sf::Text WaveNumPrint;
+	int HP;
+	sf::Text HPPrint;
+	sf::CircleShape UICircle1;
+	sf::CircleShape UICircle2;
+	sf::CircleShape UICircle3;
+	sf::CircleShape UICircle4;
+	sf::RectangleShape UIplatform;
+	sf::Font font;
 	sf::Sprite tower1;
 	sf::Sprite tower2;
 	sf::Sprite tower3;
@@ -90,7 +78,6 @@ protected:
 	sf::Texture texture2;
 	sf::Texture texture3;
 	sf::Texture texture4;
-	sf::CircleShape test;
 	bool click1;
 	bool click2;
 	bool click3;
@@ -99,5 +86,3 @@ protected:
 	bool towerbuilt;
 
 };
-
-//comment
