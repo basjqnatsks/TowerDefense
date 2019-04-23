@@ -170,9 +170,49 @@ void wrapper::run_app() {
 
 		//checks collision, builds towers - *need to pass in build tower function*
 		ui->buildtower1(rectangleArray, window);
+
+		if (ui->gettowerbuilt() == true) {
+
+			//build tower1
+
+			ui->settowerbuilt(false);
+
+		}
+
+		ui->resetSprite1();
+
 		ui->buildtower2(rectangleArray, window);
+		if (ui->gettowerbuilt() == true) {
+
+			//build tower2
+
+			ui->settowerbuilt(false);
+
+		}
+
+		ui->resetSprite2();
+
 		ui->buildtower3(rectangleArray, window);
+		if (ui->gettowerbuilt() == true) {
+
+			//build tower3
+
+			ui->settowerbuilt(false);
+
+		}
+
+		ui->resetSprite3();
+
 		ui->buildtower4(rectangleArray, window);
+		if (ui->gettowerbuilt() == true) {
+
+			//build tower4
+
+			ui->settowerbuilt(false);
+
+		}
+
+		ui->resetSprite4();
 
 		ui->draganddrop(window);
 
