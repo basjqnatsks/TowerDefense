@@ -23,23 +23,22 @@ void wrapper::add_enemy(int type, sf::RenderWindow &win) {
 	texture->loadFromFile("slime1.PNG");
 	var.setTexture(texture);
 	var.set_x_axis(0.f);
+	var.killValue = 5;
 	var.set_y_axis(5.f);
 	var.setPosition(0, 0);
 	if (type == 1) {
 		var.hp = 1;
-		var.setFillColor(sf::Color(0, 255, 0));
+
 	}
 	else if (type == 2) {
 		var.hp = 2;
-		var.setFillColor(sf::Color(255, 0, 0));
 	}
 	else if (type == 3) {
 		var.hp = 3;
-		var.setFillColor(sf::Color(0, 0, 255));
 	}
 	else if (type == 4) {
 		var.hp = 4;
-		var.setFillColor(sf::Color(255, 0, 255));
+
 	}
 	//win.draw(var);
 	//std::cout << "Inside: " << &var << "\n";
@@ -49,9 +48,11 @@ void wrapper::add_enemy(int type, sf::RenderWindow &win) {
 
 void wrapper::add_tower(int type, float x, float y) {
 	Tower var;
+	var.setSize(sf::Vector2f(35, 35));
 	var.setSize(sf::Vector2f(40, 25));
 
-	
+
+
 	sf::Texture *texture = new sf::Texture;
 
 	var.set_x_axis(x);
@@ -60,14 +61,18 @@ void wrapper::add_tower(int type, float x, float y) {
 	if (type == 1) {
 		var.range = 400;
 		var.damage = 1;
+		var.delay = 40;
+		var.setFillColor(sf::Color(255, 0, 0));
 		texture->loadFromFile("Bobcat.jpg");
 		var.setTexture(texture);
 		var.setScale(1.05, 1.16);
-		
+
 	}
 	else if (type == 2) {
 		var.range = 150;
 		var.damage = 2;
+		var.delay = 40;
+		var.setFillColor(sf::Color(255, 255, 0));
 		texture->loadFromFile("Pika.jpg");
 		var.setTexture(texture);
 		var.setScale(1.25, 1.32);
@@ -75,13 +80,17 @@ void wrapper::add_tower(int type, float x, float y) {
 	else if (type == 3) {
 		var.range = 200;
 		var.damage = 3;
+		var.delay = 40;
+		var.setFillColor(sf::Color(0, 0, 255));
 		texture->loadFromFile("Red Panda.jpg");
 		var.setTexture(texture);
 		var.setScale(1.2, 1.2);
 	}
 	else if (type == 4) {
 		var.range = 200;
-		var.damage = 2;
+		var.damage = 4;
+		var.delay = 40;
+		var.setFillColor(sf::Color(0, 255, 0));
 		texture->loadFromFile("Tiger.jpg");
 		var.setTexture(texture);
 		var.setScale(1.2, 1.4);
@@ -96,7 +105,7 @@ void wrapper::run_app() {
 
 	double x2;
 	double x1;
-
+	int rate = 1;
 	double y2;
 	double y1;
 	double mag;
@@ -174,6 +183,7 @@ void wrapper::run_app() {
 
 
 	int runtime = 0;
+	bool good = false;
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -212,7 +222,7 @@ void wrapper::run_app() {
 		ui->buildtower3(rectangleArray, window);
 		if (ui->gettowerbuilt() == true) {
 
-			
+
 			add_tower(3, ui->getTower3LocationX(), ui->getTower3LocationY());
 			ui->settowerbuilt(false);
 
@@ -243,27 +253,81 @@ void wrapper::run_app() {
 		window.draw(rectangle5);
 		ui->open(window);
 		//window.draw(shape);
+		if (runtime % 60000 == 0) {
+			rate *= 2;
+		}
 
 		if (runtime % 3200 == 0 && runtime > 1) {
-			this->add_enemy(1, window);
+			for (int i = 0; i < rate; ++i) {
+				this->add_enemy(1, window);
+			}
+
 			//add_tower(3);
 
 		}
 		//GAME HANDLER
-		if (runtime % 1600 == 0 && runtime > 1) {
-			this->add_enemy(2, window);
-			//add_tower(3);
+		if (runtime % 1616 == 0 && runtime > 1) {
+			for (int i = 0; i < rate; ++i) {
+				this->add_enemy(1, window);
+			}
+		}
 
+		if (runtime % 1600 == 0 && runtime > 1) {
+			for (int i = 0; i < rate; ++i) {
+				this->add_enemy(2, window);
+			}
 		}
 		if (runtime % 2600 == 0 && runtime > 1) {
-			this->add_enemy(4, window);
-			//add_tower(3);
-
+			for (int i = 0; i < rate; ++i) {
+				this->add_enemy(3, window);
+			}
 		}
+
+		if (runtime % 6400 == 0 && runtime > 1) {
+			for (int i = 0; i < rate; ++i) {
+				this->add_enemy(4, window);
+			}
+		}
+
 		//std::cout << this->enemystack.size() << " " << runtime << "\n";
 		if (runtime % 16 == 0) {
 			//std::cout << this->enemystack.size() << "\n";
+			for (std::vector<Tower>::iterator iterz = this->towerstack.begin(); iterz != this->towerstack.end(); ++iterz) {
+				for (std::vector<Enemy>::iterator iter = this->enemystack.begin(); iter != this->enemystack.end(); ++iter) {
+					window.draw((*iterz));
+					x2 = (*iterz).get_x();
+					x1 = (*iter).get_x();
+
+					y2 = (*iterz).get_y();
+					y1 = (*iter).get_y();
+					mag = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+					//std::cout << "MAG: " << mag << "\n";
+					//mag = 1;
+					if (mag <= (*iterz).range && (*iter).dead != 1 && runtime % ((*iterz).delay * 16) == 0) {
+						//std::cout << "HP: " << (*iter).hp << "Dam: " << (*iterz).damage << "\n";
+						(*iter).hp -= (*iterz).damage;
+						break;
+						//std::cout << "DONE\n";
+					}
+				}
+
+
+			}
 			for (std::vector<Enemy>::iterator iter = this->enemystack.begin(); iter != this->enemystack.end(); ++iter) {
+
+				if ((*iter).hp == 1) {
+					(*iter).setFillColor(sf::Color(255, 0, 0));
+				}
+				else if ((*iter).hp == 2) {
+					(*iter).setFillColor(sf::Color(0, 255, 0));
+				}
+				else if ((*iter).hp == 3) {
+					(*iter).setFillColor(sf::Color(0, 0, 255));
+				}
+				else if ((*iter).hp == 4) {
+					(*iter).setFillColor(sf::Color(255, 0, 255));
+				}
+
 				if ((*iter).get_x() > 255 && (*iter).get_y() < 505) {
 					(*iter).set_y_axis((*iter).get_y() + 1);
 				}
@@ -280,21 +344,10 @@ void wrapper::run_app() {
 					(*iter).set_x_axis((*iter).get_x() + 1);
 				}
 
-				for (std::vector<Tower>::iterator iterz = this->towerstack.begin(); iterz != this->towerstack.end(); ++iterz) {
-					window.draw((*iterz));
-					x2 = (*iterz).get_x();
-					x1 = (*iter).get_x();
 
-					y2 = (*iterz).get_y();
-					y1 = (*iter).get_y();
-					mag = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-					//std::cout << "MAG: " << mag << "\n";
-					if (mag <= (*iterz).range) {
-						(*iter).hp -= (*iterz).damage;
-					}
-				}
 				if ((*iter).hp < 1) {
-					this->enemystack.erase(std::remove(this->enemystack.begin(), this->enemystack.end(), (*iter)), this->enemystack.end());
+					(*iter).dead = 1;
+					(*iter).setFillColor(sf::Color(0, 0, 0));
 				}
 
 
@@ -303,7 +356,13 @@ void wrapper::run_app() {
 				//mem leak FIXED nvmd
 				//std::cout << this->health << "\n";
 				if ((*iter).get_x() > 1400) {
-					this->health -= (int)(*iter).hp;
+					if ((*iter).dead != 1) {
+						this->health -= (int)(*iter).hp;
+					}
+					else {
+						this->Currency += 10;
+					}
+
 					if (this->health < 1) {
 						return;
 					}
@@ -313,11 +372,12 @@ void wrapper::run_app() {
 				Enemy null = (*iter);
 				window.draw(null);
 			}
+
 		}
 
 
 		window.display();
-		Sleep(1);
+		Sleep(10);
 		runtime += 16;
 
 
@@ -325,9 +385,9 @@ void wrapper::run_app() {
 
 
 	}
-	/*	
-	
-	
+	/*
+
+
 
 
 
@@ -348,7 +408,7 @@ void wrapper::run_app() {
 		}
 
 		window.clear();
-		
+
 
 
 
@@ -364,11 +424,11 @@ void wrapper::run_app() {
 
 			//for(int i = 0; i < numtowers; i++){
 
-			//for(int x = ui->getTower1().getPosition().x; 
+			//for(int x = ui->getTower1().getPosition().x;
 			//	x < ui->getTower1().getPosition.x + (ui->getTower1().getTexture()->getSize().x * ui->getTower1().getScale().x);
 			//	x++){
 
-			//for(int y = ui->getTower1().getPosition().y; 
+			//for(int y = ui->getTower1().getPosition().y;
 			//	y < ui->getTower1().getPosition.y + (ui->getTower1().getTexture()->getSize().y * ui->getTower1().getScale().y);
 			//	y++){
 

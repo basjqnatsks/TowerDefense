@@ -5,11 +5,9 @@ class Enemy : public Entity {
 public:
 	Enemy();
 	~Enemy();
-	Enemy(float killValue, float hp);
-	void pathing(float stopCoords[][50]);
-	void onHit();
-	float killValue;
+	int killValue;
 	int hp;
+	int dead;
 	bool operator==(const Enemy &in) const {
 		return (this == &in);
 	}
