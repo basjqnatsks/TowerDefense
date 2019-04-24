@@ -1,5 +1,9 @@
 #include "UI.h"
 
+UI::UI() {
+
+
+}
 
 UI::UI(int &pointsz, int &EnemiesDefeatedz, int &WaveNumz, int &HPz) {
 	this->points = &pointsz;
@@ -50,25 +54,25 @@ UI::UI(int &pointsz, int &EnemiesDefeatedz, int &WaveNumz, int &HPz) {
 	font.loadFromFile("DroidSans.ttf");
 
 	text1.setCharacterSize(20);
-	text1.setString("Bobcat \n  100");
+	text1.setString("Bobcat \n  120");
 	text1.setFont(font);
 	text1.setPosition(35.f, 890.f);
 	text1.setStyle(sf::Text::Bold);
 
 	text2.setCharacterSize(20);
-	text2.setString("Pika \n120");
+	text2.setString("Pika \n100");
 	text2.setFont(font);
 	text2.setPosition(205.f, 890.f);
 	text2.setStyle(sf::Text::Bold);
 
 	text3.setCharacterSize(20);
-	text3.setString("Red Panda \n     300");
+	text3.setString("Red Panda \n     200");
 	text3.setFont(font);
 	text3.setPosition(332.f, 890.f);
 	text3.setStyle(sf::Text::Bold);
 
 	text4.setCharacterSize(20);
-	text4.setString("Tiger \n 200");
+	text4.setString("Tiger \n 300");
 	text4.setFont(font);
 	text4.setPosition(512.f, 890.f);
 	text4.setStyle(sf::Text::Bold);
@@ -165,6 +169,7 @@ sf::Vector2f UI::getLocation() {
 
 }
 
+//prints UI
 void UI::open(sf::RenderWindow &window) {
 
 	pointsPrint.setString(std::to_string(*this->points));
@@ -269,6 +274,7 @@ float UI::getTower4LocationY() {
 
 }
 
+//enables sprite movement
 void UI::moveSprite1(sf::Vector2f newlocation) {
 
 	tower1.setPosition(newlocation.x - 15.f, newlocation.y - 10.f);
@@ -293,6 +299,7 @@ void UI::moveSprite4(sf::Vector2f newlocation) {
 
 }
 
+//resets sprites to original position
 void UI::resetSprite1() {
 
 	tower1.setPosition(51.f, 832.f);
@@ -317,6 +324,7 @@ void UI::resetSprite4() {
 
 }
 
+//allows "towers" to be "built"
 void UI::buildtower1(sf::RectangleShape rectangleArray[5], sf::RenderWindow &window) {
 
 	//"drops" sprites, builds tower if not on path
@@ -377,12 +385,12 @@ void UI::buildtower1(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 		}
 
 		//build tower if no intersection
-		if (intersect == false && *points >= 100) {
+		if (intersect == false && *points >= 120) {
 
 			//build tower 1
 			towerbuilt = true;
 
-			*points = *points - 100;
+			*points = *points - 120;
 
 		}
 		else if (intersect == true) {
@@ -457,11 +465,11 @@ void UI::buildtower2(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 
 		}
 
-		if (intersect == false && *points >= 120) {
+		if (intersect == false && *points >= 100) {
 
 			//build tower 2
 			towerbuilt = true;
-			*points = *points - 120;
+			*points = *points - 100;
 
 
 		}
@@ -537,11 +545,11 @@ void UI::buildtower3(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 
 		}
 
-		if (intersect == false && *points >= 300) {
+		if (intersect == false && *points >= 200) {
 
 			//build tower 3
 			towerbuilt = true;
-			*points = *points - 300;
+			*points = *points - 200;
 
 
 		}
@@ -613,11 +621,11 @@ void UI::buildtower4(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 			}
 		}
 
-		if (intersect == false && *points >= 200) {
+		if (intersect == false && *points >= 300) {
 
 			//build tower 4
 			towerbuilt = true;
-			*points = *points - 200;
+			*points = *points - 300;
 
 		}
 		else if (intersect == true) {
@@ -630,9 +638,9 @@ void UI::buildtower4(sf::RectangleShape rectangleArray[5], sf::RenderWindow &win
 
 }
 
+//enables drag and drop movement of sprites
 void UI::draganddrop(sf::RenderWindow &window) {
 
-	//enables drag and drop movement of sprites
 	if (click1 == true) {
 
 		moveSprite1(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window)));
@@ -676,6 +684,7 @@ void UI::draganddrop(sf::RenderWindow &window) {
 
 }
 
+//used for tower placement
 bool UI::gettowerbuilt() {
 
 	return towerbuilt;

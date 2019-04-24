@@ -12,6 +12,7 @@ class UI {
 
 public:
 
+	UI();
 	UI(int &pointsz, int &EnemiesDefeatedz, int &WaveNumz, int &HPz);
 	~UI();
 
@@ -57,7 +58,7 @@ public:
 	void buildtower4(sf::RectangleShape rectangleArray[5], sf::RenderWindow &window);
 	void draganddrop(sf::RenderWindow &window);
 
-protected:
+private:
 
 	sf::Vector2f location;
 	sf::Text text1;
