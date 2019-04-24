@@ -6,8 +6,8 @@ public:
 	~testcases();
 
 	void collisionDetectionTest();
-
-
+	void dragAndDropTest(); 
+	void printUITest(); 
 private:
 
 	sf::RectangleShape collisionRectangle;
