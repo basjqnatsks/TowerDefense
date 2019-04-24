@@ -49,32 +49,43 @@ void wrapper::add_enemy(int type, sf::RenderWindow &win) {
 
 void wrapper::add_tower(int type, float x, float y) {
 	Tower var;
-	var.setSize(sf::Vector2f(35, 35));
+	var.setSize(sf::Vector2f(40, 25));
 
 	
-	
+	sf::Texture *texture = new sf::Texture;
+
 	var.set_x_axis(x);
 	var.set_y_axis(y);
 	var.setPosition(x, y);
 	if (type == 1) {
 		var.range = 400;
 		var.damage = 1;
-		var.setFillColor(sf::Color(255, 0, 0));
+		texture->loadFromFile("Bobcat.jpg");
+		var.setTexture(texture);
+		var.setScale(1.05, 1.16);
+		
 	}
 	else if (type == 2) {
 		var.range = 150;
 		var.damage = 2;
-		var.setFillColor(sf::Color(255, 255, 0));
+		texture->loadFromFile("Pika.jpg");
+		var.setTexture(texture);
+		var.setScale(1.25, 1.32);
 	}
 	else if (type == 3) {
 		var.range = 200;
 		var.damage = 3;
-		var.setFillColor(sf::Color(0, 0, 255));
+		texture->loadFromFile("Red Panda.jpg");
+		var.setTexture(texture);
+		var.setScale(1.2, 1.2);
 	}
 	else if (type == 4) {
 		var.range = 200;
 		var.damage = 2;
-		var.setFillColor(sf::Color(0, 255, 0));
+		texture->loadFromFile("Tiger.jpg");
+		var.setTexture(texture);
+		var.setScale(1.2, 1.4);
+
 	}
 	//win.draw(var);
 	//std::cout << "Inside: " << &var << "\n";
