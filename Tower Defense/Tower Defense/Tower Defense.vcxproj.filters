@@ -67,16 +67,16 @@
     <Image Include="Bobcat.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Eevee.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Metal Gear.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Valkyr.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="grass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Pika.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Tiger.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Red Panda.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

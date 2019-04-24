@@ -50,27 +50,27 @@ UI::UI(int &pointsz, int &EnemiesDefeatedz, int &WaveNumz, int &HPz) {
 	font.loadFromFile("DroidSans.ttf");
 
 	text1.setCharacterSize(20);
-	text1.setString("Arrow Tower \n       100");
+	text1.setString("Bobcat \n  100");
 	text1.setFont(font);
-	text1.setPosition(12.f, 890.f);
+	text1.setPosition(35.f, 890.f);
 	text1.setStyle(sf::Text::Bold);
 
 	text2.setCharacterSize(20);
-	text2.setString("Cannon Tower \n         120");
+	text2.setString("Pika \n120");
 	text2.setFont(font);
-	text2.setPosition(162.f, 890.f);
+	text2.setPosition(205.f, 890.f);
 	text2.setStyle(sf::Text::Bold);
 
 	text3.setCharacterSize(20);
-	text3.setString("Fire Tower \n     300");
+	text3.setString("Red Panda \n     300");
 	text3.setFont(font);
 	text3.setPosition(332.f, 890.f);
 	text3.setStyle(sf::Text::Bold);
 
 	text4.setCharacterSize(20);
-	text4.setString("Laser Tower \n      200");
+	text4.setString("Tiger \n 200");
 	text4.setFont(font);
-	text4.setPosition(480.f, 890.f);
+	text4.setPosition(512.f, 890.f);
 	text4.setStyle(sf::Text::Bold);
 
 	pointsText.setCharacterSize(20);
@@ -124,20 +124,20 @@ UI::UI(int &pointsz, int &EnemiesDefeatedz, int &WaveNumz, int &HPz) {
 	tower1.setPosition(51.f, 832.f);
 	tower1.setScale(0.05f, 0.05f);
 
-	texture2.loadFromFile("Eevee.png");
+	texture2.loadFromFile("Pika.jpg");
 	tower2.setTexture(texture2);
-	tower2.setPosition(206.f, 832.f);
-	tower2.setScale(0.2f, 0.2f);
+	tower2.setPosition(202.f, 829.f);
+	tower2.setScale(0.05f, 0.05f);
 
-	texture3.loadFromFile("Metal Gear.png");
+	texture3.loadFromFile("Red Panda.jpg");
 	tower3.setTexture(texture3);
-	tower3.setPosition(361.f, 832.f);
-	tower3.setScale(0.02f, 0.02f);
+	tower3.setPosition(358.f, 832.f);
+	tower3.setScale(0.06f, 0.06f);
 
-	texture4.loadFromFile("Valkyr.png");
+	texture4.loadFromFile("Tiger.jpg");
 	tower4.setTexture(texture4);
-	tower4.setPosition(516.f, 832.f);
-	tower4.setScale(0.1f, 0.1f);
+	tower4.setPosition(513.f, 830.f);
+	tower4.setScale(0.06f, 0.07f);
 
 }
 
@@ -223,49 +223,49 @@ sf::Sprite UI::getTower4() {
 
 float UI::getTower1LocationX() {
 
-	return tower1.getPosition().x - 15.f;
+	return tower1.getPosition().x;
 
 }
 
 float UI::getTower2LocationX() {
 
-	return tower2.getPosition().x - 15.f;
+	return tower2.getPosition().x;
 
 }
 
 float UI::getTower3LocationX() {
 
-	return tower3.getPosition().x - 15.f;
+	return tower3.getPosition().x;
 
 }
 
 float UI::getTower4LocationX() {
 
-	return tower4.getPosition().x - 15.f;
+	return tower4.getPosition().x;
 
 }
 
 float UI::getTower1LocationY() {
 
-	return tower1.getPosition().y - 10.f;
+	return tower1.getPosition().y;
 
 }
 
 float UI::getTower2LocationY() {
 
-	return tower2.getPosition().y - 10.f;
+	return tower2.getPosition().y;
 
 }
 
 float UI::getTower3LocationY() {
 
-	return tower3.getPosition().y - 10.f;
+	return tower3.getPosition().y;
 
 }
 
 float UI::getTower4LocationY() {
 
-	return tower4.getPosition().y - 10.f;
+	return tower4.getPosition().y;
 
 }
 
@@ -301,19 +301,19 @@ void UI::resetSprite1() {
 
 void UI::resetSprite2() {
 
-	tower2.setPosition(206.f, 832.f);
+	tower2.setPosition(202.f, 829.f);
 
 }
 
 void UI::resetSprite3() {
 
-	tower3.setPosition(361.f, 832.f);
+	tower3.setPosition(358.f, 832.f);
 
 }
 
 void UI::resetSprite4() {
 
-	tower4.setPosition(516.f, 832.f);
+	tower4.setPosition(513.f, 830.f);
 
 }
 
