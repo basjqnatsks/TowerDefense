@@ -62,7 +62,6 @@ void wrapper::add_tower(int type, float x, float y) {
 		var.range = 400;
 		var.damage = 1;
 		var.delay = 40;
-		var.setFillColor(sf::Color(255, 0, 0));
 		texture->loadFromFile("Bobcat.jpg");
 		var.setTexture(texture);
 		var.setScale(1.05, 1.16);
@@ -72,7 +71,6 @@ void wrapper::add_tower(int type, float x, float y) {
 		var.range = 150;
 		var.damage = 2;
 		var.delay = 40;
-		var.setFillColor(sf::Color(255, 255, 0));
 		texture->loadFromFile("Pika.jpg");
 		var.setTexture(texture);
 		var.setScale(1.25, 1.32);
@@ -81,7 +79,6 @@ void wrapper::add_tower(int type, float x, float y) {
 		var.range = 200;
 		var.damage = 3;
 		var.delay = 40;
-		var.setFillColor(sf::Color(0, 0, 255));
 		texture->loadFromFile("Red Panda.jpg");
 		var.setTexture(texture);
 		var.setScale(1.2, 1.2);
@@ -90,7 +87,6 @@ void wrapper::add_tower(int type, float x, float y) {
 		var.range = 200;
 		var.damage = 4;
 		var.delay = 40;
-		var.setFillColor(sf::Color(0, 255, 0));
 		texture->loadFromFile("Tiger.jpg");
 		var.setTexture(texture);
 		var.setScale(1.2, 1.4);
@@ -385,90 +381,6 @@ void wrapper::run_app() {
 
 
 	}
-	/*
-
-
-
-
-
-
-
-
-
-
-	bool click = false;
-	bool intersect = false;
-	while (window.isOpen())
-	{
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
-
-		window.clear();
-
-
-
-
-		UI *ui = new UI;
-		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-
-			click = false;
-
-			ui->resetSprite();
-
-			//check if on path or overlapping another tower
-			//use origin of sprite and size with for loop to check every pixel for intersection
-
-			//for(int i = 0; i < numtowers; i++){
-
-			//for(int x = ui->getTower1().getPosition().x;
-			//	x < ui->getTower1().getPosition.x + (ui->getTower1().getTexture()->getSize().x * ui->getTower1().getScale().x);
-			//	x++){
-
-			//for(int y = ui->getTower1().getPosition().y;
-			//	y < ui->getTower1().getPosition.y + (ui->getTower1().getTexture()->getSize().y * ui->getTower1().getScale().y);
-			//	y++){
-
-			//if( Tower[i]->getTowerX() == x && Tower[i]->getTowerY() == y){
-
-			//intersect = true;
-
-			//}
-
-			//}
-			//}
-			//}
-
-			//check if on path
-
-			//if(intersect == false){
-
-			//build tower
-
-			//}
-		}
-
-		//
-		if (click == true) {
-
-			ui->moveSprite(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window)));
-
-		}
-		else if (ui->getTower1().getGlobalBounds().contains(static_cast <sf::Vector2f> (sf::Mouse::getPosition(window))) && sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-
-			click = true;
-
-
-
-
-		}
-		window.clear();
-		ui->open(window);
-		window.display();
-	}*/
 
 }
 
