@@ -83,7 +83,12 @@ void wrapper::add_tower(int type, float x, float y) {
 
 void wrapper::run_app() {
 
+	double x2;
+	double x1;
 
+	double y2;
+	double y1;
+	double mag;
 	sf::RenderWindow window(sf::VideoMode(1400, 950), "Tower Defense", sf::Style::Close);
 
 
@@ -228,8 +233,17 @@ void wrapper::run_app() {
 		ui->open(window);
 		//window.draw(shape);
 
+		if (runtime % 3200 == 0 && runtime > 1) {
+			this->add_enemy(1, window);
+			//add_tower(3);
 
+		}
 		//GAME HANDLER
+		if (runtime % 1600 == 0 && runtime > 1) {
+			this->add_enemy(2, window);
+			//add_tower(3);
+
+		}
 		if (runtime % 2600 == 0 && runtime > 1) {
 			this->add_enemy(4, window);
 			//add_tower(3);
@@ -257,16 +271,16 @@ void wrapper::run_app() {
 
 				for (std::vector<Tower>::iterator iterz = this->towerstack.begin(); iterz != this->towerstack.end(); ++iterz) {
 					window.draw((*iterz));
-					//int x2 = (*iterz).get_x() - (*iterz).get_x();
-					//int x1 = (*iter).get_x() - (*iter).get_x();
+					x2 = (*iterz).get_x();
+					x1 = (*iter).get_x();
 
-					//int y2 = (*iterz).get_y() - (*iterz).get_y();
-					//int y1 = (*iter).get_y() - (*iter).get_y();
-					//int mag = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-
-					//if (mag <= (*iterz).range) {
-					//	(*iter).hp -= (*iterz).damage;
-					//}
+					y2 = (*iterz).get_y();
+					y1 = (*iter).get_y();
+					mag = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+					//std::cout << "MAG: " << mag << "\n";
+					if (mag <= (*iterz).range) {
+						(*iter).hp -= (*iterz).damage;
+					}
 				}
 				if ((*iter).hp < 1) {
 					this->enemystack.erase(std::remove(this->enemystack.begin(), this->enemystack.end(), (*iter)), this->enemystack.end());

@@ -7,4 +7,5 @@ public:
 	Tower(float killValue, float hp);
 	int range;
 	int damage;
+	int delay;
 };
