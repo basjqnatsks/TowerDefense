@@ -5,8 +5,12 @@ public:
 	testcases();
 	~testcases();
 
+	void collisionDetectionTest();
+
 
 private:
+
+	sf::RectangleShape collisionRectangle;
 
 
 };
