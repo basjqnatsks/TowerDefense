@@ -14,7 +14,6 @@ public:
 
 private:
 
-	sf::RectangleShape shape;
 	sf::Text text;
 	sf::Text text1;
 	sf::Font font;
