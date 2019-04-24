@@ -174,7 +174,7 @@ void wrapper::run_app() {
 		if (ui->gettowerbuilt() == true) {
 
 			//build tower1
-
+			add_tower(1, ui->getTower1LocationX(), ui->getTower1LocationY());
 			ui->settowerbuilt(false);
 
 		}
@@ -185,6 +185,7 @@ void wrapper::run_app() {
 		if (ui->gettowerbuilt() == true) {
 
 			//build tower2
+			add_tower(2, ui->getTower2LocationX(), ui->getTower2LocationY());
 
 			ui->settowerbuilt(false);
 
@@ -195,8 +196,8 @@ void wrapper::run_app() {
 		ui->buildtower3(rectangleArray, window);
 		if (ui->gettowerbuilt() == true) {
 
-			//build tower3
-
+			
+			add_tower(3, ui->getTower3LocationX(), ui->getTower3LocationY());
 			ui->settowerbuilt(false);
 
 		}
@@ -207,6 +208,7 @@ void wrapper::run_app() {
 		if (ui->gettowerbuilt() == true) {
 
 			//build tower4
+			add_tower(4, ui->getTower4LocationX(), ui->getTower4LocationY());
 
 			ui->settowerbuilt(false);
 
@@ -230,6 +232,7 @@ void wrapper::run_app() {
 		//GAME HANDLER
 		if (runtime % 2600 == 0 && runtime > 1) {
 			this->add_enemy(4, window);
+			//add_tower(3);
 
 		}
 		//std::cout << this->enemystack.size() << " " << runtime << "\n";
@@ -253,16 +256,17 @@ void wrapper::run_app() {
 				}
 
 				for (std::vector<Tower>::iterator iterz = this->towerstack.begin(); iterz != this->towerstack.end(); ++iterz) {
-					int x2 = (*iterz).get_x() - (*iterz).get_x();
-					int x1 = (*iter).get_x() - (*iter).get_x();
+					window.draw((*iterz));
+					//int x2 = (*iterz).get_x() - (*iterz).get_x();
+					//int x1 = (*iter).get_x() - (*iter).get_x();
 
-					int y2 = (*iterz).get_y() - (*iterz).get_y();
-					int y1 = (*iter).get_y() - (*iter).get_y();
-					int mag = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+					//int y2 = (*iterz).get_y() - (*iterz).get_y();
+					//int y1 = (*iter).get_y() - (*iter).get_y();
+					//int mag = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 
-					if (mag <= (*iterz).range) {
-						(*iter).hp -= (*iterz).damage;
-					}
+					//if (mag <= (*iterz).range) {
+					//	(*iter).hp -= (*iterz).damage;
+					//}
 				}
 				if ((*iter).hp < 1) {
 					this->enemystack.erase(std::remove(this->enemystack.begin(), this->enemystack.end(), (*iter)), this->enemystack.end());
