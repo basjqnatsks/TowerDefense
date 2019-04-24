@@ -12,7 +12,7 @@ Menu::Menu() {
 
 	text1.setFont(font);
 	text1.setCharacterSize(30);
-	text1.setString("This is a tower defense game. \nPlace animals to ward off the vicious slimes. \nTowers cost a specific amount of points to build \nand cannot be placed on the enemies' path. \nIf slimes reach the end of the path you will lose HP. \nIf your HP reaches 0 you die.");
+	text1.setString("This is a tower defense game. \nPlace animals (drag and drop) to ward off the vicious slimes. \nTowers cost a specific amount of points to build \nand cannot be placed on the enemies' path. \nIf slimes reach the end of the path you will lose HP. \nIf your HP reaches 0 you die.");
 	text1.setPosition(100.f, 180.f);
 
 	text2.setFont(font);
